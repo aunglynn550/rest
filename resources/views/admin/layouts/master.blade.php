@@ -58,10 +58,15 @@
   
   <!-- Toastr JS -->
   <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
+  <!-- JQuery Upload Image JS -->
+  <script src="{{asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
   
   <!-- Template JS File -->
   <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
   <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+
+  <!-- Page Specific JS File -->
+  <!-- <script src="{{asset('admin/assets/js/page/features-post-create.js')}}"></script> -->
 
   <script>
        toastr.options.progressBar = true;
@@ -75,5 +80,20 @@
             @endforeach
         @endif
   </script>
+
+  <script>
+   
+      $.uploadPreview({
+        input_field: "#image-upload",   // Default: .image-upload
+        preview_box: "#image-preview",  // Default: .image-preview
+        label_field: "#image-label",    // Default: .image-label
+        label_default: "Choose File",   // Default: Choose File
+        label_selected: "Change File",  // Default: Change File
+        no_label: false,                // Default: false
+        success_callback: null          // Default: null
+      });
+     
+  </script>
+  @stack('scripts')
 </body>
 </html>
