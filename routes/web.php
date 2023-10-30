@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
   // Admin Auth Routes
-Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
+Route::group(['middleware'=> 'guest'],function(){
+
+    Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
+});
 
 Route::get('/home', [FrontendController::class, 'index'])->name('home');
 
