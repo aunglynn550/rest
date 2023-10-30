@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>General Dashboard &mdash; Stisla</title>
 
@@ -63,9 +64,14 @@
   <!-- JQuery Upload Image JS -->
   <script src="{{asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
   
+  
+  <!-- Sweet Alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- Template JS File -->
   <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
   <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+
 
   <!-- Page Specific JS File -->
   <!-- <script src="{{asset('admin/assets/js/page/features-post-create.js')}}"></script> -->
@@ -94,8 +100,63 @@
         no_label: false,                // Default: false
         success_callback: null          // Default: null
       });
+
+      /// csrf token SetUp////
+      $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
      
   </script>
+
+  <!-- Sweet Alert Script -->
+  <script>
+    $(document).ready(function(){
+
+      $('body').on('click','.delete-item', function(e){
+
+        e.preventDefault()
+        let url = $(this).attr('href');
+        
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          $.ajax({
+            method : 'DELETE',
+            url: url, 
+            success: function(response){
+              if(response.status === 'success'){
+                  toastr.success(response.message)
+                  $('#slider-table').DataTable().draw();
+              }else if(response.status === 'error'){
+                toastr.success(response.message)
+              }
+            },
+            error: function(error){
+
+            }
+          })
+
+         
+        }
+      })
+
+      }) 
+
+    })
+        
+  </script>
+
   @stack('scripts')
 </body>
 </html>
