@@ -33,7 +33,7 @@
                         <div class="fp__dashboard_menu">
                             <div class="dasboard_header">
                                 <div class="dasboard_header_img">
-                                    <img src="{{ auth()->user()->avatar }}" alt="user" class="img-fluid w-100">
+                                    <img id="pf-img" src="{{ auth()->user()->avatar }}" alt="user" class="img-fluid w-100">
                                     <label for="upload"><i class="far fa-camera"></i></label>
                                     <form id="avatar_form" action="" enctype="multipart/form-data">
                                         <input type="file" id="upload" hidden name="avatar">
@@ -1232,28 +1232,40 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function(){
-            $('#upload').on('change',function(){
-               let form = $('#avatar_form')[0]
-               let formData = new FormData(form)//Javascript FormData() to create Form Object
+        // $(document).ready(function(){
+        //     $('#upload').on('change',function(){
+        //        let form = $('#avatar_form')[0]
+        //        let formData = new FormData(form)//Javascript FormData() to create Form Object
               
-               $.ajax({
-                method:'POST',
-                url: "{{ route('profile.avatar.update') }}",
-                data: formData,
-                processData: false,
-                contentType : false,
-                success : function(response){
-                  if(response.status == 'success'){
-                    window.location.reload();
-                  }
-                },
-                error:function(error){
-                    console.log(error)
-                }
-               })
-            })
-        })
+        //        $.ajax({
+        //         method:'POST',
+        //         url: "{{ route('profile.avatar.update') }}",
+        //         data: formData,
+        //         processData: false,
+        //         contentType : false,
+        //         success : function(response){
+        //           if(response.status == 'success'){
+        //             window.location.reload();
+        //           }
+        //         },
+        //         error:function(error){
+        //             console.log(error)
+        //         }
+        //        })
+        //     })
+        // })
+
+        $(document).ready(function() {
+
+        $('#upload').change(function(e){
+        var reader = new FileReader();
+        reader.onload = function(e){
+            $('#pf-img').attr('src',e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+        });
+
+        });
     </script>
 
 @endpush 
