@@ -33,11 +33,13 @@
                         <div class="fp__dashboard_menu">
                             <div class="dasboard_header">
                                 <div class="dasboard_header_img">
-                                    <img src="images/comment_img_2.png" alt="user" class="img-fluid w-100">
+                                    <img src="{{ auth()->user()->avatar }}" alt="user" class="img-fluid w-100">
                                     <label for="upload"><i class="far fa-camera"></i></label>
-                                    <input type="file" id="upload" hidden>
+                                    <form id="avatar_form" action="" enctype="multipart/form-data">
+                                        <input type="file" id="upload" hidden name="avatar">
+                                    </form>
                                 </div>
-                                <h2>hasib ahmed</h2>
+                                <h2>{{ auth()->user()->name }}</h2>
                             </div>
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
@@ -1227,3 +1229,31 @@
 
 
 @endsection 
+
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#upload').on('change',function(){
+               let form = $('#avatar_form')[0]
+               let formData = new FormData(form)//Javascript FormData() to create Form Object
+              
+               $.ajax({
+                method:'POST',
+                url: "{{ route('profile.avatar.update') }}",
+                data: formData,
+                processData: false,
+                contentType : false,
+                success : function(response){
+                  if(response.status == 'success'){
+                    window.location.reload();
+                  }
+                },
+                error:function(error){
+                    console.log(error)
+                }
+               })
+            })
+        })
+    </script>
+
+@endpush 
