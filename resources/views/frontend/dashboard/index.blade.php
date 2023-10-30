@@ -71,9 +71,16 @@
                                     data-bs-target="#v-pills-settings" type="button" role="tab"
                                     aria-controls="v-pills-settings" aria-selected="false"><span><i
                                             class="fas fa-user-lock"></i></span> Change Password </button>
-
-                                <button class="nav-link" type="button"><span> <i class="fas fa-sign-out-alt"></i>
-                                    </span> Logout</button>
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf                   
+                                        <button class="nav-link" type="button"
+                                        href="{{ route('logout') }}" 
+                                            onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                            <span> <i class="fas fa-sign-out-alt"></i></span> Logout
+                                        </button>
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -1232,40 +1239,40 @@
 
 @push('scripts')
     <script>
-        // $(document).ready(function(){
-        //     $('#upload').on('change',function(){
-        //        let form = $('#avatar_form')[0]
-        //        let formData = new FormData(form)//Javascript FormData() to create Form Object
+        $(document).ready(function(){
+            $('#upload').on('change',function(){
+               let form = $('#avatar_form')[0]
+               let formData = new FormData(form)//Javascript FormData() to create Form Object
               
-        //        $.ajax({
-        //         method:'POST',
-        //         url: "{{ route('profile.avatar.update') }}",
-        //         data: formData,
-        //         processData: false,
-        //         contentType : false,
-        //         success : function(response){
-        //           if(response.status == 'success'){
-        //             window.location.reload();
-        //           }
-        //         },
-        //         error:function(error){
-        //             console.log(error)
-        //         }
-        //        })
-        //     })
-        // })
+               $.ajax({
+                method:'POST',
+                url: "{{ route('profile.avatar.update') }}",
+                data: formData,
+                processData: false,
+                contentType : false,
+                success : function(response){
+                  if(response.status == 'success'){
+                    window.location.reload();
+                  }
+                },
+                error:function(error){
+                    console.log(error)
+                }
+               })
+            })
+        })
 
-        $(document).ready(function() {
+        // $(document).ready(function() {
 
-        $('#upload').change(function(e){
-        var reader = new FileReader();
-        reader.onload = function(e){
-            $('#pf-img').attr('src',e.target.result);
-        }
-        reader.readAsDataURL(e.target.files['0']);
-        });
+        // $('#upload').change(function(e){
+        // var reader = new FileReader();
+        // reader.onload = function(e){
+        //     $('#pf-img').attr('src',e.target.result);
+        // }
+        // reader.readAsDataURL(e.target.files['0']);
+        // });
 
-        });
+        // });
     </script>
 
 @endpush 
