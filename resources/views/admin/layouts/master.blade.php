@@ -140,7 +140,7 @@
                   toastr.success(response.message)
                  window.location.reload()
               }else if(response.status === 'error'){
-                toastr.success(response.message)
+                toastr.error(response.message)
               }
             },
             error: function(error){
