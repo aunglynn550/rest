@@ -134,10 +134,11 @@
           $.ajax({
             method : 'DELETE',
             url: url, 
+            data:{_token:"{{csrf_token()}}"},
             success: function(response){
               if(response.status === 'success'){
                   toastr.success(response.message)
-                  $('#slider-table').DataTable().draw();
+                 window.location.reload()
               }else if(response.status === 'error'){
                 toastr.success(response.message)
               }
