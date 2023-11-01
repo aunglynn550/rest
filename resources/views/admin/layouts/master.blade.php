@@ -17,6 +17,12 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
+
+  <!-- Select 2 CSS -->
+  <link rel="stylesheet" href="{{asset('admin/assets/modules/select2/dist/css/select2.min.css')}}">
+
+  <!-- Summer Note For Text Editor CSS -->
+  <link rel="stylesheet" href="{{asset('admin/assets/modules/summernote/summernote-bs4.css')}}">
   
   <!-- Icon Picker CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap-iconpicker.css') }}">
@@ -61,7 +67,12 @@
   <script src="{{ asset('admin/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
   <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
+
+  <!-- Select 2 JS-->
+  <script src="{{asset('admin/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
   
+  <!-- Summer Note JS For Text Editor -->
+  <script src="{{asset('admin/assets/modules/summernote/summernote-bs4.js')}}"></script>
   <!-- Toastr JS -->
   <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
   <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
