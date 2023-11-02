@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\SectionTitle;
 use App\Models\Slider;
 use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class FrontendController extends Controller
 {
@@ -26,5 +28,13 @@ class FrontendController extends Controller
         ];
         return SectionTitle::whereIn('key',$keys)->pluck('value','key');
        
+    }//end method
+
+    public function showProduct(string $slug):View{
+
+            $product = Product::with(['productImages','productSizes','productOptions'])->where(['slug'=> $slug,'status'=>1])->firstOrFail();
+            $relatedProducts = Product::where('category_id',$product->category_id)
+            ->where('id','!=',$product->id)->take(8)->latest()->get();
+            return view('frontend.pages.product-view',compact('product','relatedProducts'));
     }
 }

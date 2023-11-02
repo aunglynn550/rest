@@ -23,8 +23,6 @@ Route::group(['middleware'=> 'guest'],function(){
     Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
 });
 
-Route::get('/home', [FrontendController::class, 'index'])->name('home');
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,5 +39,13 @@ Route::group(['middleware'=>'auth'], function(){
 
 
 require __DIR__.'/auth.php';
+
+
+//  Show Home Page
+Route::get('/home', [FrontendController::class, 'index'])->name('home');
+//  Show Product Page
+Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
+
+
 
 
