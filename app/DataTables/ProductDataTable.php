@@ -30,9 +30,7 @@ class ProductDataTable extends DataTable
                   <i class="fas fa-cog"></i>
                 </button>
                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 29px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="'.route('admin.product-gallery.show.index',$query->id).'">Product Gallery</a>                 
                 </div>
               </div>';
                 return $edit.$delete.$more;
