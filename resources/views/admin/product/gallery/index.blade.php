@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <input name="image" type="file" class="form-control">
-                                    <input type="hidden" name="{{$product->id}}" value="{{$product->id}}">
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Upload</button>
