@@ -67,7 +67,7 @@
                                     <td>{{ ++$loop->index }}</td>
                                     <!-- $loop is the Global variable which is accessable inside the loop -->
                                     <td>{{ $size->name }}</td>
-                                    <td>{{ $size->price }}</td>
+                                    <td>{{ currencyPosition($size->price) }}</td>
                                     <td>
                                         <a href="{{ route('admin.product-size.destroy',$size->id) }}" class='delete-item btn btn-danger mx-2'><i class='fa fa-trash'></i></a>
                                     </td>
@@ -145,7 +145,7 @@
                                     <td>{{ ++$loop->index }}</td>
                                     <!-- $loop is the Global variable which is accessable inside the loop -->
                                     <td>{{ $option->name }}</td>
-                                    <td>{{ $option->price }}</td>
+                                    <td>{{  currencyPosition($size->price) }}</td>
                                     <td>
                                         <a href="{{ route('admin.product-option.destroy',$option->id) }}" class='delete-item btn btn-danger mx-2'><i class='fa fa-trash'></i></a>
                                     </td>
