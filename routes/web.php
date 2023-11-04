@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -50,4 +51,6 @@ Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name(
 Route::get('/load-product-model/{productId}', [FrontendController::class, 'loadProductModel'])->name('load-product-model');
 
 
+// Add To Cart Route//
+Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 
