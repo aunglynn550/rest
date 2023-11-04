@@ -36,5 +36,10 @@ class FrontendController extends Controller
             $relatedProducts = Product::where('category_id',$product->category_id)
             ->where('id','!=',$product->id)->take(8)->latest()->get();
             return view('frontend.pages.product-view',compact('product','relatedProducts'));
+    }//end method
+
+    public function loadProductModel($productId){
+       $product = Product::with(['productSizes','productOptions'])->findOrFail($productId);
+       return view('frontend.layout.ajax-files.product-popup-model',compact('product'))->render();
     }
 }

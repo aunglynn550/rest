@@ -46,6 +46,8 @@ Route::get('/home', [FrontendController::class, 'index'])->name('home');
 //  Show Product Page
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
 
+//Product Model Routes//
+Route::get('/load-product-model/{productId}', [FrontendController::class, 'loadProductModel'])->name('load-product-model');
 
 
 

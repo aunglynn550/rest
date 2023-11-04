@@ -138,6 +138,9 @@
         })
 
     </script>
+
+        <!-- Load Global JS -->
+    @include('frontend.layout.global-scripts')
     @stack('scripts')
 </body>
 
