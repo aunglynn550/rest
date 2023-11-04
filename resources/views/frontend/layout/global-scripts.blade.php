@@ -6,6 +6,7 @@
             method:'GET',
             url:'{{ route("load-product-model", ":productId") }}'.replace(':productId',productId),  //create a placeholder & replacing it      
             beforeSend: function(){
+                $('.overlay-container').removeClass('d-none');
                 $('.overlay').addClass('active');
             },
             success: function(response){
@@ -17,6 +18,7 @@
             },
             complete:function(){
                 $('.overlay').removeClass('active');
+                $('.overlay-container').addClass('d-none');
             }
             
         })
