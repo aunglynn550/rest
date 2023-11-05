@@ -1,4 +1,5 @@
 <input type="hidden" value="{{ cartTotal() }}" id="cartTotal">
+<input type="hidden" value="{{ count(Cart::content()) }}" id="cart_product_count">
 @foreach(Cart::content() as $cartProduct)
                 <li>
                     <div class="menu_cart_img">
