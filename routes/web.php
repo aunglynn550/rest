@@ -54,4 +54,5 @@ Route::get('/load-product-model/{productId}', [FrontendController::class, 'loadP
 // Add To Cart Route//
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('get-cart-products', [CartController::class, 'getCartProduct'])->name('get-cart-products');
+Route::get('cart-product-remove/{rowId}', [CartController::class, 'cartProductRemove'])->name('cart-product-remove');
 
