@@ -29,7 +29,7 @@ class CartController extends Controller
             ];
         
         if($productSize !== null){
-            $options['product_size'][]=[
+            $options['product_size']=[
                 'id' => $productSize?->id,
                 'name' => $productSize?->name,
                 'price' => $productSize?->price,
@@ -57,5 +57,9 @@ class CartController extends Controller
         }catch(\Exception $e){            
             return response(['status' => 'error','message'=> 'Something Went Wrong !',500]);
         }
+        }//end method
+
+        function getCartProduct(){           
+            return view('frontend.layout.ajax-files.sidebar-cart-item')->render();
         }
     }

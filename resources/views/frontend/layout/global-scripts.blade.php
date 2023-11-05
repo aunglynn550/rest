@@ -23,4 +23,27 @@
             
         })
     }
+
+    // Update Sidebar cart//
+    function updateSidebarCart(){
+        $.ajax({
+            method:'GET',
+            url:'{{ route("get-cart-products") }}',    
+            beforeSend: function(){
+             
+            },
+            success: function(response){                
+                $('.cart_contents').html(response);
+                let cartTotal = $('#cartTotal').val();
+                $('.cart_subtotal').text("{{ currencyPosition(':cartTotal') }}".replace(':cartTotal',cartTotal));
+            },
+            error:function(xhr,status,error){
+                console.error(error);
+            },
+            complete:function(){
+              
+            }
+            
+        })
+    }
 </script>
