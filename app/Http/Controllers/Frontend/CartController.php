@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Cart;
 class CartController extends Controller
 {
+
+    function index(){
+        return view('frontend/pages/cart-view');
+    }//end method
+
     // Add product to cart
   public function addToCart(Request $request){
     
@@ -73,5 +78,22 @@ class CartController extends Controller
                 return response(['status' => 'error','message'=> 'Something WenT Wrong!'],500); 
 
             }
-        }
+        }//end method
+
+        function cartQtyUpdate(Request $request){
+            try{
+                Cart::update($request->rowId, $request->qty);
+                return response(['product_total'=> productTotal($request->rowId)],200);
+            }catch(\Exception $e){
+                logger($e);
+                return response(['status'=> 'error', 'message'=> 'Something Went Wrong. Please reload the page !'],500);
+            }
+       
+        }//end method
+
+        function cartDestroy(){
+            Cart::destroy();
+            return redirect()->back();
+        }//end method
+       
     }
