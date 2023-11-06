@@ -112,7 +112,7 @@
                 let quantity = $('#quantity');
                 let currentQuantity = parseFloat(quantity.val());
                 if(currentQuantity > 1){
-                    quantity.val(currentQuantity + 1);
+                    quantity.val(currentQuantity - 1);
                     updateTotalPrice();
                 }
             })

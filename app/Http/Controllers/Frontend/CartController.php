@@ -53,9 +53,10 @@ class CartController extends Controller
                 'options' => $options
             ]);
 
-            return response(['status' => 'success','message'=> 'Product added into cart !',200]);
-        }catch(\Exception $e){            
-            return response(['status' => 'error','message'=> 'Something Went Wrong !',500]);
+            return response(['status' => 'success','message'=> 'Product added into cart !'],200);
+        }catch(\Exception $e){   
+            logger($e);    //   storage/logs/laravel.log     
+            return response(['status' => 'error','message'=> 'Something WenT Wrong !'],500);
         }
         }//end method
 
@@ -68,8 +69,8 @@ class CartController extends Controller
                 Cart::remove($rowId);
 
                 return response(['status' => 'success','message'=> 'Item has been removed'],200);
-            }catch(\Exception $e){
-                return response(['status' => 'error','message'=> 'Something Went Wrong!'],500);
+            }catch(\Exception $e){               
+                return response(['status' => 'error','message'=> 'Something WenT Wrong!'],500); 
 
             }
         }
