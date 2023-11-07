@@ -129,8 +129,13 @@
 
                     
                         <ul class="details_button_area d-flex flex-wrap">
-                            <li><a class="common_btn v_submit_button" href="#">add to cart</a></li>
-                            <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
+                                @if($product->quantity === 0)
+                                <li><a class="common_btn bg-danger" href="javascript:;">Stock Out</a></li>
+                                @else
+                                <li><a class="common_btn v_submit_button" href="#">add to cart</a></li>
+                                @endif    
+                           
+                                <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
                         </ul>
                     </div>
                 </div>
