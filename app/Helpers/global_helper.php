@@ -2,6 +2,9 @@
 
 
 // Create unique slug
+
+use App\Models\Coupon;
+
 if(!function_exists('generateUniqueSlug')){
     function generateUniqueSlug($model,$name){
         $modelClass = "App\\Models\\$model";
@@ -84,10 +87,14 @@ if(!function_exists('grandCartTotal')){
     $total = 0;
     function grandCartTotal(){
         $cartTotal = cartTotal();
+      
         if(session()->has('coupon')){
-            $discount = session()->get('coupon')['discount'];
+            $coupon = Coupon::where('code', session()->get('coupon')['code'])->first();
+            $discount = number_format($cartTotal * ($coupon->discount / 100),2);
             $total = $cartTotal - $discount;
 
+          
+            session()->put('coupon',['code'=>$coupon->code,'discount'=>$discount]);
             return $total;
         }else{
             $total = $cartTotal;

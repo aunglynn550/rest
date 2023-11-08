@@ -165,6 +165,8 @@
     @push('scripts')
     <script>
         $(document).ready(function(){
+         
+           
             var cartTotal = parseInt("{{ cartTotal() }}");
 
             $('.increment').on('click', function(){
@@ -188,6 +190,7 @@
                         $('#subtotal').text("{{ config('settings.site_currency_icon') }}"+ cartTotal);
 
                         $('#final_total').text("{{ config('settings.site_currency_icon') }}"+ response.grand_cart_total);
+                        $('#discount').text("{{ config('settings.site_currency_icon') }}"+ response.discount);
                     }else if(response.status === 'error'){
                         inputField.val(response.qty);
                         toastr.error(response.message);
@@ -216,6 +219,7 @@
                                 $('#subtotal').text("{{ config('settings.site_currency_icon') }}"+ cartTotal);
 
                                 $('#final_total').text("{{ config('settings.site_currency_icon') }}"+ response.grand_cart_total);
+                                $('#discount').text("{{ config('settings.site_currency_icon') }}"+ response.discount);
                             }else if(response.status === 'error'){
                                     inputField.val(response.qty);
                                     toastr.error(response.message);

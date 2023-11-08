@@ -101,12 +101,14 @@ class CartController extends Controller
             // Unless the above error message & current quantity of the Cart  
             try{
                 $cart = Cart::update($request->rowId, $request->qty);
+               
                 return response([
                         'status'=>'success',
                         'product_total'=> productTotal($request->rowId),
                         'qty'=> $cart->qty,
                         'cart_total' => cartTotal(),
-                        'grand_cart_total' => grandCartTotal()
+                        'grand_cart_total' => grandCartTotal(),
+                        'discount' => session()->get('coupon')['discount']
                     ],200);
             }catch(\Exception $e){
                 logger($e);
