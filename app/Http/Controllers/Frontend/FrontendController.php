@@ -15,7 +15,7 @@ use Illuminate\View\View;
 class FrontendController extends Controller
 {
     public function index(){
-        session()->forget('coupon');
+       // session()->forget('coupon');
         $sliders = Slider::where('status',1)->get();
         $sectionTitles = $this->getSectionTitles();
         $whyChooseUs = WhyChooseUs::where('status',1)->get();
