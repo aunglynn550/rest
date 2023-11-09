@@ -35,6 +35,7 @@
                                                     </div><!-- end col-md-6 -->
                                                     @endforeach
                                                 </div><!-- end row -->
+                                                </div><!-- end fp_dashboard_existing_address -->
                                                  
                                             <div class="fp_dashboard_new_address ">
                                                 <form action="{{ route('address.store') }}" method="POST">
