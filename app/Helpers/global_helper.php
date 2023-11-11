@@ -85,19 +85,19 @@ if(!function_exists('productTotal')){
 
 if(!function_exists('grandCartTotal')){
     $total = 0;
-    function grandCartTotal(){
+    function grandCartTotal($deliveryFee= 0){
         $cartTotal = cartTotal();
       
         if(session()->has('coupon')){
             $coupon = Coupon::where('code', session()->get('coupon')['code'])->first();
             $discount = number_format($cartTotal * ($coupon->discount / 100),2);
-            $total = $cartTotal - $discount;
+            $total = ($cartTotal + $deliveryFee)- $discount;
 
           
             session()->put('coupon',['code'=>$coupon->code,'discount'=>$discount]);
             return $total;
         }else{
-            $total = $cartTotal;
+            $total = $cartTotal + $deliveryFee;
             return $total;
         }
     }

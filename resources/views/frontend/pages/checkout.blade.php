@@ -11,7 +11,7 @@
                 <div class="fp__breadcrumb_text">
                     <h1>checkout</h1>
                     <ul>
-                        <li><a href="index.html">home</a></li>
+                        <li><a href="{{ url('/home') }}">home</a></li>
                         <li><a href="#">checkout</a></li>
                     </ul>
                 </div>
@@ -172,7 +172,7 @@
                             @endif
                             <p class="total"><span>total:</span> <span id="grand_total">{{ currencyPosition(grandCartTotal()) }}</span></p>
                            
-                            <a class="common_btn" href=" #">checkout</a>
+                            <a class="common_btn" id="proceed_pmt_button" href=" #">Proceed To Payment</a>
                     </div><!-- end fp__cart_list_footer_button -->
                 </div><!-- end col-lg-4 -->
 
@@ -204,6 +204,36 @@
                                     .replace(":amount", response.delivery_fee));
                         grandTotal.text("{{ currencyPosition(':amount') }}"
                                     .replace(":amount", response.grand_total));
+                    },
+                    error:function(xhr,status,error){
+                        let errorMessage = xhr.responseJSON.message;
+                        toastr.error(errorMessage);
+                    },
+                    complete:function(){
+                     hideLoader()
+                    }
+                })
+        })
+
+        $('#proceed_pmt_button').on('click',function(e){
+            e.preventDefault();
+            let address = $('.v_address:checked');
+            let id = address.val();
+
+            if(address.length === 0){
+                toastr.error('Please Select an Address!');
+                return;
+            }
+
+            $.ajax({
+                    method: 'POST',
+                    url: '{{ route("checkout.redirect") }}',
+                    data:{id:id},                   
+                    beforeSend: function(){
+                      showLoader()
+                    },
+                    success: function(response){
+                      window.location.href = response.redirect_url;
                     },
                     error:function(xhr,status,error){
                         let errorMessage = xhr.responseJSON.message;
