@@ -74,7 +74,7 @@
                                                 
                                               
                                                     @foreach(@$product->options->product_options as $option)
-                                                        <p>{{ $option['name'] }} {{ currencyPosition( $product->options->product_option['price']) }}</p>
+                                                        <p>{{ $option['name'] }} {{  currencyPosition( @$product->options->product_option['price']) }}</p>
                                                     @endforeach
                                                                                            
                                             </td>

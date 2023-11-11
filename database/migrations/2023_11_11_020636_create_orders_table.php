@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->string('payment_status')->default('pending');
             $table->timestamp('payment_approve_date')->nullable();
-            $table->string('transition_id')->nullable();
+            $table->string('transaction_id')->nullable();
             $table->json('coupon_info')->nullable();
-            $table->string('coupon_name');
+            $table->string('currency_name')->nullable();
             $table->string('order_status')->default('pending');
             $table->timestamps();
         });

@@ -102,3 +102,17 @@ if(!function_exists('grandCartTotal')){
         }
     }
 }
+
+// Generate Invoice Id//
+
+if(!function_exists('generateInvoiceId')){
+    $total = 0;
+    function generateInvoiceId($deliveryFee= 0){
+      $randomNumber = rand(1,999999);
+      $currendDateTime = now();
+
+      $invoiceId = $randomNumber.$currendDateTime->format('ymd').$currendDateTime->format('s');
+
+      return $invoiceId;
+    }
+}
