@@ -79,7 +79,7 @@ button {
 }
 
 :root {
-    --colorPrimary: #F86F03;
+    --colorPrimary: #0B502F;;
     --paraColor: #494949;
     --colorBlack: #010f1c;
     --colorWhite: #ffffff;
@@ -2497,7 +2497,7 @@ footer {
 
 .fp__breadcrumb_overlay {
     padding: 250px 0px 125px 0px;
-    background: #f86f03a3;
+    background: var(--colorPrimary);
     position: relative;
 }
 
