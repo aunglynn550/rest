@@ -56,7 +56,7 @@
         </div>
     </section>
 
-    <div class="fp__payment_modal">
+    <!-- <div class="fp__payment_modal">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!--============================
         PAYMENT PAGE END
     ==============================-->
@@ -116,7 +116,7 @@
                       showLoader();
                     },
                     success: function(response){
-                     
+                     window.location.href = response.redirect_url;
                     },
                     error:function(xhr,status,error){                        
                         let errors = xhr.responseJSON.errors;
