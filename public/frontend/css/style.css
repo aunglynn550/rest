@@ -5674,6 +5674,15 @@ CHECKOUT PAGE START
     color: var(--colorWhite);
 }
 
+.fp__track_order ul li.declined_status::before {
+    background: #af4c61 !important;
+    color: var(--colorWhite);
+}
+
+.fp__track_order ul li.declined_status::after {
+    background: #af4c61 !important;    
+}
+
 .fp__invoice_header {
     display: flex;
     flex-wrap: wrap;
