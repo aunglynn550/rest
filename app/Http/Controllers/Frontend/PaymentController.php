@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Events\OrderPaymentUpdateEvent;
+use App\Events\OrderPlacedNotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
@@ -29,6 +30,13 @@ class PaymentController extends Controller
             'discount',
             'grandTotal'
         ]));
+    }//end method
+
+    public function paymentSuccess(){
+        return view('frontend.pages.payment-success');
+    }//end method
+    public function paymentCancel(){
+        return view('frontend.pages.payment-cancel');
     }//end method
 
     public function makePayment(Request $request, OrderService $orderService){
@@ -65,7 +73,7 @@ class PaymentController extends Controller
             'live' => [
                 'client_id'         => config('gatewaySettings.paypal_api_key'),
                 'client_secret'     => config('gatewaySettings.paypal_secret_key'),
-                'app_id'            => env('PAYPAL_LIVE_APP_ID', ''),
+                'app_id'            => config('gatewaySetting.paypal_app_id'),
             ],
         
             'payment_action' => 'Sale', // Can only be 'Sale', 'Authorization' or 'Order'
@@ -111,13 +119,13 @@ class PaymentController extends Controller
         }
 
        }else{
-            
+            return redirect()->route('payment.cancel')->withErrors(['error'=> $response['error']['message']]);
         }
   
        
     }//end method
 
-    public function PaypalSuccess(Request $request){
+    public function PaypalSuccess(Request $request , OrderService $orderService){
 
         $config =$this->setPaypalConfig();
 
@@ -126,7 +134,7 @@ class PaymentController extends Controller
 
         $response = $provider->capturePaymentOrder($request->token);
 
-        if(isset($response['status']) && $response['status'] === 'COMLETED'){
+        if(isset($response['status']) && $response['status'] === 'COMPLETED'){
             $orderId = session()->get('order_id');
             $capture = $response['purchase_units'][0]['payments']['captures'][0];
 
@@ -137,11 +145,21 @@ class PaymentController extends Controller
             ];
 
             OrderPaymentUpdateEvent::dispatch($orderId,$paymentInfo,'PayPal');
+            OrderPlacedNotificationEvent::dispatch($orderId);
+
+            // Clear Session Data
+            $orderService->clearSession();
+
+           return redirect()->route('payment.success');
         }
+        else{
+            return redirect()->route('payment.cancel')->withErrors(['error' => $response['error']['message']]);
+        }
+       
 
     }//end method
 
     public function PaypalCancel(){
-
+        return redirect()->route('payment.cancel');
     }//end method
 }
