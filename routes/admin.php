@@ -68,6 +68,10 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
      Route::get('inprocess-orders',[OrderController::class,'inprocessOrderIndex'])->name('inprocess-orders');
      Route::get('delivered-orders',[OrderController::class,'deliveredOrderIndex'])->name('delivered-orders');
      Route::get('declined-orders',[OrderController::class,'declinedOrderIndex'])->name('declined-orders');
+     
+     //  Order Notification Routes //
+     Route::get('clear-notification',[AdminDashboardController::class,'ClearNotification'])->name('clear-notification');
+
 
 
      /// Payment Gateway Setting Routes//

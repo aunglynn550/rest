@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,7 +87,8 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::get('paypal/cancel', [PaymentController::class, 'PaypalCancel'])->name('paypal.cancel');
 
     Route::get('test', function(){
-        RTOrderPlacedNotificationEvent::dispatch("Hello There!");
+        $order = Order::first();
+        RTOrderPlacedNotificationEvent::dispatch($order);
     });
 
 
