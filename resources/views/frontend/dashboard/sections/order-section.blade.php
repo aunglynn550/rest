@@ -114,9 +114,9 @@
                                                                     <span class="size">{{ @$size->name }} - {{ @$size->price ? currencyPosition(@$size->price) : '' }}</span>
                                                                   
                                                                     @foreach($options as $option)
-                                                                        @if(!$option instanceof stdClass)                                                                 
-                                                                            <span class="coca_cola">{{ $option['name'] ?? ''}} - {{ @$option['price'] ? currencyPosition(@$option['price']) : '' }}</span>
-                                                                        @endif
+                                                                                                                                      
+                                                                            <span class="coca_cola">{{ $option->name}} - {{ @$option->price ? currencyPosition(@$option->price) : '' }}</span>
+                                                                
                                                                     @endforeach
                                                                     
                                                                    
