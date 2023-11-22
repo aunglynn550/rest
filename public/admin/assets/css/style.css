@@ -2173,15 +2173,15 @@ pre {
 .beep {
   position: relative; }
   .beep:after {
-    content: '';
+    content: 'new';
     position: absolute;
-    top: 2px;
-    right: 8px;
-    width: 7px;
-    height: 7px;
-    background-color: #ffa426;
+    top: 0px;
+    right: 4px;
+    width: 21px;
+    height: 24px;
+    background-color: #ca4e65;
     border-radius: 50%;
-    animation: pulsate 1s ease-out;
+    animation: pulsate .8s cubic-bezier(.22,.61,.36,1);;
     animation-iteration-count: infinite;
     opacity: 1; }
   .beep.beep-sidebar:after {
