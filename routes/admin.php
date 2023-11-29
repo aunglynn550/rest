@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\ChatController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProfileController;
@@ -71,6 +72,10 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
      
      //  Order Notification Routes //
      Route::get('clear-notification',[AdminDashboardController::class,'ClearNotification'])->name('clear-notification');
+
+     //  Chat  Routes //
+     Route::get('chat',[ChatController::class,'index'])->name('chat.index');
+     Route::get('get-conversation/{senderId}',[ChatController::class,'getConversation'])->name('chat.get-conversation');
 
 
 

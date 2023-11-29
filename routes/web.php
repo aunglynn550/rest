@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -42,6 +43,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('address', [DashboardController::class ,'createAddress'])->name('address.store');
     Route::put('address/{id}/edit', [DashboardController::class ,'updateAddress'])->name('address.update');
     Route::delete('address/{id}', [DashboardController::class ,'destroyAddress'])->name('address.destroy');
+
+    // Chat Routes
+    Route::post('chat/send-message', [ChatController::class,'sendMessage'])->name('chat.send-message');
 });
 
 

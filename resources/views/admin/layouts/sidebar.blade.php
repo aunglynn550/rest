@@ -178,6 +178,7 @@
               </ul>
            </li>
               
+            <li><a class="nav-link" href="{{ route('admin.chat.index') }}"><i class="fas fa-fire"></i>Message</a></li>              
             <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-fire"></i>Settings</a></li>              
             <!-- <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
