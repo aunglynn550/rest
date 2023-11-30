@@ -51,10 +51,12 @@
                                 </div>
                                 <div class="card-footer chat-form">
                                     <form id="chat-form">
-                                    <input type="text" class="form-control" placeholder="Type a message">
-                                    <button class="btn btn-primary">
-                                        <i class="far fa-paper-plane"></i>
-                                    </button>
+                                        @csrf
+                                        <input type="text" class="form-control fp_send_message" placeholder="Type a message" name="message">
+                                        <input type="hidden" class="form-control" name="receiver_id" id="receiver_id" value="">
+                                        <button class="btn btn-primary">
+                                            <i class="far fa-paper-plane"></i>
+                                        </button>
                                     </form>
                                 </div>
                                 </div>
@@ -70,33 +72,79 @@
 @push('scripts')
 <script>
     $(document).ready(function(){
+
+        var userId = "{{ auth()->user()->id }}"
+
+        $('#receiver_id').val("")
+
+        function scrollToBottom(){
+            let chatContent = $('.chat-content');
+            chatContent.scrollTop(chatContent.prop("scrollHeight"));
+        }
+
         $('.fp_chat_user').on('click', function(){
+
             let senderId = $(this).data('user');
 
-           $.ajax({
-            method: 'GET',
-            url: '{{ route("admin.chat.get-conversation", ":senderId") }}'.replace(":senderId",senderId),
-            beforeSend: function(){
+            $('#receiver_id').val(senderId)
 
-            },
-            success:function(response){
-                $('.chat-content').empty()
-             $.each(response, function(index, message){
-                $html = `
-                <div class="chat-item chat-left" style=""><img src="../dist/img/avatar/avatar-1.png">
-                    <div class="chat-details">
-                        <div class="chat-text">${message.message}</div>
-                        <div class="chat-time">03:04</div>
-                    </div>
-                </div>`
-                $('.chat-content').append($html)
-             })
-            },
-            error:function(xhr,status,error){
+            $.ajax({
+                method: 'GET',
+                url: '{{ route("admin.chat.get-conversation", ":senderId") }}'.replace(":senderId",senderId),
+                beforeSend: function(){
 
-            }
-           })
-        })
+                },
+                success:function(response){
+                    $('.chat-content').empty()
+                    $.each(response, function(index, message){
+                        let avatar = "{{ asset(':avatar') }}".replace(':avatar', message.sender.avatar);
+                        $html = `
+                        <div class="chat-item ${message.sender_id == userId ? "chat-right" : "chat-left"}" "><img style="width:50px; aspect-ratio:1/1; object-fit:cover;" src="${avatar}">
+                            <div class="chat-details">
+                                <div class="chat-text">${message.message}</div>
+                                <div class="chat-time">Sending...</div>
+                            </div>
+                        </div>`
+                        $('.chat-content').append($html)
+                    })
+                    scrollToBottom()
+                },
+                error:function(xhr,status,error){
+
+                }
+            })
+        })//end function
+
+        $('#chat-form').on('submit', function(e){
+            e.preventDefault();
+            let formData = $(this).serialize();
+               $.ajax({
+                method: 'POST',
+                url: "{{ route('chat.send-message') }}",
+                data: formData,
+                beforeSend:function(){
+                let message = $('.fp_send_message').val()
+                html = `
+                    <div class="chat-item chat-left" style=""><img src="{ }">
+                        <div class="chat-details">
+                            <div class="chat-text">${message}</div>
+                            <div class="chat-time">Sending...</div>
+                        </div>
+                    </div>`
+                $('.chat-content').append(html)
+                $('.fp_send_message').val("")
+                },
+                success: function(response){
+
+                },
+                error: function(xhr, status ,error){                    
+                    let errors = xhr.responseJSON.errors;
+                    $.each(errors, function(key,value){
+                        toastr.error(value);
+                    })
+                }
+               })
+        })//end function
     })
 </script>
 @endpush

@@ -31,9 +31,25 @@ class ChatController extends Controller
 
         $message = Chat::whereIn('sender_id',[$senderId,$receiverId])
                         ->whereIn('receiver_id',[$senderId,$receiverId])
+                        ->with(['sender','receiver'])
                         ->orderBy('created_at','asc')
                         ->get();
 
         return response($message);
-    }
+    }//end method
+
+    public function sendMessage(Request $request){
+        $request->validate([
+         'message' => ['required', 'max:1000'],
+         'receiver_id' => ['required', 'integer']
+        ]);
+ 
+        $chat = new Chat();
+        $chat->sender_id = auth()->user()->id;
+        $chat->receiver_id = $request->receiver_id;
+        $chat->message = $request->message;
+        $chat->save();
+ 
+        return response(['status' => 'success']);
+     }//end method
 }

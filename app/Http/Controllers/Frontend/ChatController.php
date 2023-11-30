@@ -21,5 +21,19 @@ class ChatController extends Controller
        $chat->save();
 
        return response(['status' => 'success']);
-    }
+    }// end method
+
+
+    public function getConversation($senderId){
+
+        $receiverId = auth()->user()->id;
+
+        $message = Chat::whereIn('sender_id',[$senderId,$receiverId])
+                        ->whereIn('receiver_id',[$senderId,$receiverId])
+                        ->with(['sender','receiver'])
+                        ->orderBy('created_at','asc')
+                        ->get();
+
+        return response($message);
+    }//end method
 }

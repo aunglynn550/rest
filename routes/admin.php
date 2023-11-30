@@ -77,6 +77,8 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
      Route::get('chat',[ChatController::class,'index'])->name('chat.index');
      Route::get('get-conversation/{senderId}',[ChatController::class,'getConversation'])->name('chat.get-conversation');
 
+     Route::post('chat/send-message', [ChatController::class,'sendMessage'])->name('chat.send-message');
+
 
 
      /// Payment Gateway Setting Routes//
