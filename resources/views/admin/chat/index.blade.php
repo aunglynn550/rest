@@ -124,8 +124,10 @@
                 data: formData,
                 beforeSend:function(){
                 let message = $('.fp_send_message').val()
-                html = `
-                    <div class="chat-item chat-left" style=""><img src="{ }">
+               
+                let html = `
+                    <div class="chat-item chat-right" style=""><img style="width:50px; aspect-ratio:1/1; object-fit:cover;"
+                     src="{{ asset(auth()->user()->avatar) }}">
                         <div class="chat-details">
                             <div class="chat-text">${message}</div>
                             <div class="chat-time">Sending...</div>
