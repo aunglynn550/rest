@@ -108,10 +108,11 @@
         var userId = "{{ auth()->user()->id }}";
 
         function scrollToBottom(){
-            let chatContent = $('.chat-content');
+            let chatContent = $('.fp__chat_body');
              chatContent.scrollTop(chatContent.prop("scrollHeight"));
         }
 
+            // Fetch conversations
             $('.fp_chat_message').on('click', function(){
                 let senderId =1;               
 
@@ -132,7 +133,7 @@
                                             </div>
                                             <div class="fp__chating_text">
                                                 <p>${message.message}</p>
-                                                <span>Sending...</span>
+                                                
                                             </div>
                                     </div>`
                             $('.fp__chat_body').append(html)
@@ -145,6 +146,7 @@
                 })
             })//end function
 
+            // Send Message
             $('.chat_input').on('submit', function(e){
                 e.preventDefault();
                 let formData = $(this).serialize();
@@ -167,6 +169,7 @@
                     </div>`
                 $('.fp__chat_body').append(html)
                 $('.fp_send_message').val("")
+                scrollToBottom()
                 },
                 success: function(response){
 

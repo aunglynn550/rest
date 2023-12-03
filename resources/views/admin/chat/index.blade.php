@@ -82,6 +82,7 @@
             chatContent.scrollTop(chatContent.prop("scrollHeight"));
         }
 
+        //Fetch conversation
         $('.fp_chat_user').on('click', function(){
 
             let senderId = $(this).data('user');
@@ -101,8 +102,7 @@
                         $html = `
                         <div class="chat-item ${message.sender_id == userId ? "chat-right" : "chat-left"}" "><img style="width:50px; aspect-ratio:1/1; object-fit:cover;" src="${avatar}">
                             <div class="chat-details">
-                                <div class="chat-text">${message.message}</div>
-                                <div class="chat-time">Sending...</div>
+                                <div class="chat-text">${message.message}</div>                               
                             </div>
                         </div>`
                         $('.chat-content').append($html)
@@ -115,6 +115,7 @@
             })
         })//end function
 
+        //Send Message
         $('#chat-form').on('submit', function(e){
             e.preventDefault();
             let formData = $(this).serialize();
@@ -135,6 +136,7 @@
                     </div>`
                 $('.chat-content').append(html)
                 $('.fp_send_message').val("")
+                scrollToBottom()
                 },
                 success: function(response){
 
