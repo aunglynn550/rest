@@ -6,13 +6,16 @@ function scrollToBottom(){
 window.Echo.private('chat.'+loggedInUserId)
 .listen('ChatEvent', (e)=>{
      
-    let  html = `
-      <div class="chat-item chat-left" style=""><img src="${e.avatar}">
-          <div class="chat-details">
-              <div class="chat-text">${e.message}</div>
-              <div class="chat-time">Sending...</div>
-          </div>
-      </div>`
-  $('.chat-content').append(html)
-  scrollToBottom();
+    if(e.senderId == $('#mychatbox').attr('data-inbox')){
+            let  html = `
+            <div class="chat-item chat-left" style=""><img src="${e.avatar}">
+                <div class="chat-details">
+                    <div class="chat-text">${e.message}</div>
+                    <div class="chat-time">Sending...</div>
+                </div>
+            </div>`
+            $('.chat-content').append(html)
+            scrollToBottom();
+    }
+   
     });
