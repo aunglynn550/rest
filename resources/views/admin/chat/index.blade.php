@@ -28,6 +28,8 @@
 
                                                 @php 
                                                     $chatUser = \App\Models\User::find($sender->sender_id);
+                                                    $unseenMessages = \App\Models\Chat::where(['sender_id' => $chatUser->id,
+                                                    'receiver_id' => auth()->user()->id, 'seen'=>0])->count();                                                    
                                                 @endphp
                                             <li class="media fp_chat_user" data-name="{{ $chatUser->name }}" data-user="{{ $chatUser->id }}" style="cursor:pointer;">
                                                 <img alt="image" class="mr-3 " src="{{ asset($chatUser->avatar) }}"
@@ -38,7 +40,10 @@
                                                     <div class="media-body">
                                                         <div class="mt-0 mb-1 font-weight-bold">{{ $chatUser->name }}</div>
                                                         <div class="text-warning text-small font-600-bold got_new_message">
-                                                            </div>
+                                                            @if($unseenMessages > 0)
+                                                            <i class="beep"></i>new message
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </li>                    
                                             @endforeach
@@ -92,6 +97,7 @@
 
             let senderId = $(this).data('user');
             let senderName = $(this).data('name');
+            let clickedElement = $(this);
 
             $('#mychatbox').attr('data-inbox',senderId)
             $('#receiver_id').val(senderId)
@@ -114,6 +120,7 @@
                         </div>`
                         $('.chat-content').append($html)
                     })
+                    clickedElement.find(".got_new_message").html("") 
                     scrollToBottom()
                 },
                 error:function(xhr,status,error){
@@ -144,6 +151,14 @@
                 $('.chat-content').append(html)
                 $('.fp_send_message').val("")
                 scrollToBottom()
+
+                //remove beep notification               
+                $('.fp_chat_user').each(function(){
+                let senderId = $(this).data('user')
+                if( $('#mychatbox').attr('data-inbox') == senderId){                    
+                    $(this).find(".got_new_message").html("")            
+                }
+            })
                 },
                 success: function(response){
 

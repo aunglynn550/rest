@@ -26,5 +26,7 @@ window.Echo.private('chat.'+loggedInUserId)
             $(this).find(".got_new_message").html(html)            
         }
     })
+
+    $('.message-envelope').addClass('beep')
    
     });
