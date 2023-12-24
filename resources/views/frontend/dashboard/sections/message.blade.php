@@ -137,6 +137,7 @@
                                             </div>
                                     </div>`
                             $('.fp__chat_body').append(html)
+                            $('.unseen-message-count').text(0)
                         })
                         scrollToBottom()
                     },

@@ -31,7 +31,7 @@ class ChatController extends Controller
     public function getConversation($senderId){
 
         $receiverId = auth()->user()->id;
-
+        Chat::where('sender_id', $senderId)->where('receiver_id', $receiverId)->where('seen',0)->update(['seen'=>1]);
         $message = Chat::whereIn('sender_id',[$senderId,$receiverId])
                         ->whereIn('receiver_id',[$senderId,$receiverId])
                         ->with(['sender','receiver'])
