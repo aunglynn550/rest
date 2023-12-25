@@ -64,6 +64,7 @@
                                         @csrf
                                         <input type="text" class="form-control fp_send_message" placeholder="Type a message" name="message">
                                         <input type="hidden" class="form-control" name="receiver_id" id="receiver_id" value="">
+                                        <input type="hidden" name="msg_temp_id" class="msg_temp_id" value="">
                                         <button class="btn btn-primary">
                                             <i class="far fa-paper-plane"></i>
                                         </button>
@@ -132,6 +133,9 @@
         //Send Message
         $('#chat-form').on('submit', function(e){
             e.preventDefault();
+
+            var msgId = Math.floor(Math.random() * (1 - 1000 + 1)) + 1000
+            $('.msg_temp_id').val(msgId)
             let formData = $(this).serialize();
                $.ajax({
                 method: 'POST',
@@ -145,7 +149,7 @@
                      src="{{ asset(auth()->user()->avatar) }}">
                         <div class="chat-details">
                             <div class="chat-text">${message}</div>
-                            <div class="chat-time">Sending...</div>
+                            <div class="chat-time ${msgId}">Sending...</div>
                         </div>
                     </div>`
                 $('.chat-content').append(html)
@@ -161,7 +165,10 @@
             })
                 },
                 success: function(response){
-
+                    if($('.msg_temp_id').val() == response.msgId){
+                        console.log($('.'+msgId))
+                        $('.'+msgId).remove()
+                    }
                 },
                 error: function(xhr, status ,error){                    
                     let errors = xhr.responseJSON.errors;
