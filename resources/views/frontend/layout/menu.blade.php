@@ -61,15 +61,19 @@
                     <li>
                         <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span class="cart_count">{{ count(Cart::content()) }}</span></a>
                     </li>
-                    @php 
-                        $unseenMessages = \App\Models\Chat::where(['sender_id' => 1,
-                        'receiver_id' => auth()->user()->id, 'seen'=>0])->count(); 
-                    @endphp
+                    @auth
+                        @php                             
+                            $unseenMessages = \App\Models\Chat::where(['sender_id' => 1,
+                            'receiver_id' => auth()->user()->id, 'seen'=>0])->count();                                                    
+                        @endphp
+                    @endauth
                     <li>
                         <a class="cart_icon message_icon">
                             
-                            <i class="fas fa-comment-alt-dots"></i> 
+                            <i class="fas fa-comment-alt-dots"></i>
+                            @auth                          
                             <span class="unseen-message-count">{{ $unseenMessages > 0 ? 1 : 0 }}</span>
+                            @endauth                                                    
                         </a>
                     </li>
                  
