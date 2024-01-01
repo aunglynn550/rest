@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\DailyOfferController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentGatewaySettingController;
@@ -27,8 +28,13 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     Route::put('/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 
-    // Slider All Routes//
+    // Slider All Routes//    
     Route::resource('slider',SliderController::class);
+
+    //Daily Offer All Routes
+    Route::get('daily-offer/search-product',[DailyOfferController::class, 'productSearch'])->name('daily-offer.search-product');
+    Route::put('daily-offer-title-update',[ DailyOfferController::class,'updateTitle'])->name('daily-offer-title.update');
+    Route::resource('daily-offer',DailyOfferController::class);
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
