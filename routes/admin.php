@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\BannerSliderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
@@ -35,6 +36,9 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     Route::get('daily-offer/search-product',[DailyOfferController::class, 'productSearch'])->name('daily-offer.search-product');
     Route::put('daily-offer-title-update',[ DailyOfferController::class,'updateTitle'])->name('daily-offer-title.update');
     Route::resource('daily-offer',DailyOfferController::class);
+    
+    //Banner Slider All Routes//
+    Route::resource('banner-slider',BannerSliderController::class);
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
