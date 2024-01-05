@@ -11,6 +11,7 @@ use App\Models\DailyOffer;
 use App\Models\Product;
 use App\Models\SectionTitle;
 use App\Models\Slider;
+use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -27,6 +28,7 @@ class FrontendController extends Controller
         $bannerSlider = BannerSlider::where('status',1)->latest()->take(10)->get();
         $chefs = Chef::where(['show_at_home' => 1, 'status' => 1])->get();
         $appDownload = AppDownload::first();
+        $testimonials = Testimonial::where(['show_at_home'=> 1,'status'=>1])->get();
 
         return view('frontend.home.index',
         compact(
@@ -36,7 +38,8 @@ class FrontendController extends Controller
             'dailyOffers',
             'bannerSlider',
             'chefs',
-            'appDownload'
+            'appDownload',
+            'testimonials'
         ));        
     }//end method
 
@@ -50,7 +53,10 @@ class FrontendController extends Controller
             'daily_offer_sub_title',
             'chef_top_title',
             'chef_main_title',
-            'chef_sub_title'
+            'chef_sub_title',
+            'testimonial_top_title',
+            'testimonial_main_title',
+            'testimonial_sub_title'
         ];
         return SectionTitle::whereIn('key',$keys)->pluck('value','key');
        
@@ -59,6 +65,11 @@ class FrontendController extends Controller
     public function chef(){
         $chefs = Chef::where(['status'=>1])->paginate(4);
         return view('frontend.pages.chefs',compact('chefs'));
+    }//end methos
+
+    public function testimonial(){
+        $testimonials = Testimonial::where(['status'=>1])->paginate(1);
+        return view('frontend.pages.testimonial',compact('testimonials'));
     }
 
     public function showProduct(string $slug):View{

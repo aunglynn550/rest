@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 
 Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
@@ -41,15 +42,18 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     
     //Banner Slider All Routes//
     Route::resource('banner-slider',BannerSliderController::class);
-
-     
+    
+    
     //Chef All Routes//
     Route::put('chef-title-update',[ ChefController::class,'updateTitle'])->name('chef-title.update');
     Route::resource('chef',ChefController::class);
     
     //App Download All Routes //
     Route::resource('app-download',AppDownloadController::class);
-
+    
+    // Testimonial All Routes //
+    Route::put('testimonial-title-update',[ TestimonialController::class,'updateTitle'])->name('testimonial-title.update');
+    Route::resource('testimonial',TestimonialController::class);
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');

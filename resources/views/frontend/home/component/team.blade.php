@@ -16,26 +16,26 @@
 
             <div class="row team_slider">
 
-            @foreach($chefs as $chef)
+            @foreach(@$chefs as $chef)
                 <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">                    
                     <div class="fp__single_team">
                         <div class="fp__single_team_img">
-                            <img src="{{ asset($chef->image) }}" alt="team" class="img-fluid w-100">
+                            <img src="{{ asset(@$chef->image) }}" alt="team" class="img-fluid w-100">
                         </div>
                         <div class="fp__single_team_text">
-                            <h4>{{ $chef->name }}</h4>
-                            <p>{{ $chef->title }}</p>
+                            <h4>{{ @$chef->name }}</h4>
+                            <p>{{ @$chef->title }}</p>
                             <ul class="d-flex flex-wrap justify-content-center">
-                            @if($chef->fb)
+                            @if(@$chef->fb)
                                 <li><a href="{{$chef->fb}}"><i class="fab fa-facebook-f"></i></a></li>
                             @endif
-                            @if($chef->in)
+                            @if(@$chef->in)
                                 <li><a href="{{$chef->in}}"><i class="fab fa-linkedin-in"></i></a></li>
                             @endif
-                            @if($chef->x)
+                            @if(@$chef->x)
                                 <li><a href="{{$chef->x}}"><i class="fab fa-twitter"></i></a></li>
                             @endif
-                            @if($chef->web)
+                            @if(@$chef->web)
                             <li><a href="{{$chef->web}}"><i class="fab fa-behance"></i></a></li>
                             @endif
 

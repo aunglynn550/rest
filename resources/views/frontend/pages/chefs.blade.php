@@ -58,7 +58,7 @@
               @endforeach
 
 
-              @if($chefs->hasPages())
+              @if(@$chefs->hasPages())
             <div class="fp__pagination mt_60">
                 <div class="row">
                     <div class="col-12">
