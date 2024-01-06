@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Admim\CounterController;
 use App\Http\Controllers\Admin\ChatController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +54,10 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     // Testimonial All Routes //
     Route::put('testimonial-title-update',[ TestimonialController::class,'updateTitle'])->name('testimonial-title.update');
     Route::resource('testimonial',TestimonialController::class);
+
+    // Counter All Routes //
+    Route::get('counter',[CounterController::class, 'index'])->name('counter.index');
+    Route::put('counter/update',[CounterController::class, 'update'])->name('counter.update');
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
