@@ -60,6 +60,10 @@ Route::get('/home', [FrontendController::class, 'index'])->name('home');
 Route::get('/chef', [FrontendController::class, 'chef'])->name('chef');
 //  Testimonial Page
 Route::get('/testimonial', [FrontendController::class, 'testimonial'])->name('testimonial');
+
+//  Blog Page
+Route::get('/blogs', [FrontendController::class, 'blog'])->name('blogs');
+
 //  Show Product Page
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\AppDownload;
 use App\Models\BannerSlider;
+use App\Models\Blog;
 use App\Models\Chef;
 use App\Models\Counter;
 use App\Models\Coupon;
@@ -65,15 +66,29 @@ class FrontendController extends Controller
        
     }//end method
 
+
+    //<!--=============================//
+    //               Pages             //
+    //==============================-->//
+
     public function chef(){
         $chefs = Chef::where(['status'=>1])->paginate(4);
         return view('frontend.pages.chefs',compact('chefs'));
-    }//end methos
+    }//end methods
 
     public function testimonial(){
         $testimonials = Testimonial::where(['status'=>1])->paginate(1);
         return view('frontend.pages.testimonial',compact('testimonials'));
-    }
+    }//end method
+
+    public function blog(){
+        $blogs = Blog::with(['category','user'])->where('status',1)->latest()->paginate(9);
+        return view('frontend.pages.blog',compact('blogs'));
+    }//end method
+
+    //<!--=============================//
+    //           End Pages             //
+    //==============================-->//
 
     public function showProduct(string $slug):View{
 
