@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AppDownloadController;
 use App\Http\Controllers\Admin\BannerSliderController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChefController;
 use App\Http\Controllers\Admin\CouponController;
@@ -58,6 +60,12 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     // Counter All Routes //
     Route::get('counter',[CounterController::class, 'index'])->name('counter.index');
     Route::put('counter/update',[CounterController::class, 'update'])->name('counter.update');
+
+    // Blog Category All Routes //
+    Route::resource('blog-category',BlogCategoryController::class);
+    
+    // Blog All Routes ///
+    Route::resource('blogs',BlogController::class);
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
