@@ -68,7 +68,7 @@
                                 <li><i class="fas fa-calendar-alt"></i>{{ date('d m Y', strtotime($blog->created_at)) }}</li>
                                 <li><i class="fas fa-comments"></i> 25 comment</li>
                             </ul>
-                            <a class="title" href="blog_details.html">{{ $blog->title }}</a>
+                            <a class="title" href="blog_details.html">{{ truncate($blog->title) }}</a>
                         </div>
                     </div>
                 </div>

@@ -33,6 +33,12 @@ class BlogDataTable extends DataTable
             ->addColumn('category',function($query){
                 return $query->category->name;
             })
+            ->addColumn('title', function($query){
+                return truncate($query->title,50);
+            })
+            ->addColumn('description', function($query){
+                return truncate($query->description,80);
+            })
             ->addColumn('author',function($query){
                 return $query->user->name;
             })
