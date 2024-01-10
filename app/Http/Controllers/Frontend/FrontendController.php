@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AppDownload;
 use App\Models\BannerSlider;
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Chef;
 use App\Models\Counter;
 use App\Models\Coupon;
@@ -84,6 +85,21 @@ class FrontendController extends Controller
     public function blog(){
         $blogs = Blog::with(['category','user'])->where('status',1)->latest()->paginate(9);
         return view('frontend.pages.blog',compact('blogs'));
+    }//end method
+
+    public function blogDetails($slug){
+        $blog = Blog::where('slug',$slug)->where('status',1)->firstOrFail();
+        $latestBlogs = Blog::select('id','title','slug','created_at','image')
+                        ->where('status',1)
+                        ->where('id','=',$blog->id)
+                        ->latest()->take(5)->get();
+        $categories = BlogCategory::withCount(['blogs' => function($query){
+            $query->where('status',1);
+        }])->where('status',1)->get();
+
+        $nextBlog = Blog::select('id','title','slug','image')->where('id', '>', $blog->id)->orderBy('id','ASC')->first();
+        $previousBlog = Blog::select('id','title','slug','image')->where('id', '<', $blog->id)->orderBy('id','DESC')->first();
+        return view('frontend.pages.blog-details',compact('blog','latestBlogs','categories','nextBlog','previousBlog'));
     }//end method
 
     //<!--=============================//

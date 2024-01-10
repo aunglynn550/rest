@@ -63,6 +63,7 @@ Route::get('/testimonial', [FrontendController::class, 'testimonial'])->name('te
 
 //  Blog Page
 Route::get('/blogs', [FrontendController::class, 'blog'])->name('blogs');
+Route::get('/blogs/{slug}', [FrontendController::class, 'blogDetails'])->name('blog.details');
 
 //  Show Product Page
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
