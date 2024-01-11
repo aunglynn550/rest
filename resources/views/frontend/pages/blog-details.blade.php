@@ -99,16 +99,14 @@
                     </ul>
 
                     <div class="fp__comment mt_100 xs_mt_70 wow fadeInUp" data-wow-duration="1s">
-                        <h4>03 Comments</h4>
+                        <h4> {{ count($comments)}} Comments</h4>
                         @foreach($comments as $comment)
                         
                         <div class="fp__single_comment m-0 border-0">
                             <img src="{{ asset($comment->user->avatar) }}" alt="review" class="img-fluid">
                             <div class="fp__single_comm_text">
                                 <h3>{{ $comment->user->name }} <span>{{ date('d M Y H:i A', strtotime($comment->created_at)) }} </span></h3>
-                                <p>Sure there isn't anything embarrassing hiidden in the
-                                    middles of text. All erators on the Internet
-                                    tend to repeat predefined chunks</p>
+                                <p>{{ $comment->comment }}</p>
                                 <a href="#">Reply <i class="fas fa-reply-all"></i></a>
                             </div>
                         </div>
@@ -151,8 +149,8 @@
                     <div id="sticky_sidebar">
                         <div class="fp__blog_search blog_sidebar m-0 wow fadeInUp" data-wow-duration="1s">
                             <h3>Search</h3>
-                            <form>
-                                <input type="text" placeholder="Search">
+                            <form action="{{ route('blogs') }}">
+                                <input type="text" placeholder="Search" name="search">                              
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
                         </div>
@@ -178,7 +176,7 @@
                             <h3>Categories</h3>
                             <ul>
                                 @foreach($categories as $category)
-                                <li><a href="#">{{ $category->name }} <span>{{ $category->blogs_count }}</span></a></li>  
+                                <li><a href="{{ route('blogs',['category'=> $category->slug]) }}">{{ $category->name }} <span>{{ $category->blogs_count }}</span></a></li>  
                                 @endforeach                            
                             </ul>
                         </div>

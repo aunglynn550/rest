@@ -35,7 +35,10 @@ class FrontendController extends Controller
         $appDownload = AppDownload::first();
         $testimonials = Testimonial::where(['show_at_home'=> 1,'status'=>1])->get();
         $counter = Counter::first();
-
+        $latestBlogs = Blog::withCount(['comments' => function($query){
+            $query->where('status',1);
+        }])->with(['category','user'])->where('status',1)->latest()->take(3)->get();
+      
         return view('frontend.home.index',
         compact(
             'sliders',
@@ -46,7 +49,8 @@ class FrontendController extends Controller
             'chefs',
             'appDownload',
             'testimonials',
-            'counter'
+            'counter',
+            'latestBlogs'
         ));        
     }//end method
 
@@ -84,9 +88,30 @@ class FrontendController extends Controller
         return view('frontend.pages.testimonial',compact('testimonials'));
     }//end method
 
-    public function blog(){
-        $blogs = Blog::with(['category','user'])->where('status',1)->latest()->paginate(9);
-        return view('frontend.pages.blog',compact('blogs'));
+    public function blog(Request $request){
+        // $blogs = Blog::with(['category','user'])->where('status',1)->latest()->paginate(9);
+        $blogs = Blog::withCount(['comments'=> function($query){
+            $query->where('status',1);
+        }])->with(['category','user'])->where('status',1);
+
+        if($request->has('search') && $request->filled('search')){
+            $blogs->where(function ($query) use ($request){
+                $query->where('title','like','%'.$request->search.'%')
+                ->orWhere('description','like'.'%'.$request->search.'%');
+            });
+        }
+
+        if($request->has('category') && $request->filled('category')){
+            $blogs->whereHas('category',function ($query) use ($request){
+                $query->where('slug',$request->category);                
+            });
+        }
+        $carbon = Carbon::now();
+
+        $blogs = $blogs->latest()->paginate(9);
+
+        $categories = BlogCategory::where('status',1)->get();
+        return view('frontend.pages.blog',compact('blogs','categories','carbon'));
     }//end method
 
     public function blogDetails($slug){

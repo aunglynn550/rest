@@ -2105,7 +2105,7 @@ button {
 .fp__single_blog_text {
     background: var(--colorWhite);
     width: 100%;
-    padding: 30px;
+    padding: 1.3em;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -3227,6 +3227,7 @@ footer {
 
 .blog_tags_share .tags ul li a,
 .blog_tags_share .share ul li a {
+    display: inline-block;
     font-size: 16px;
     font-weight: 400;
     color: var(--colorBlack);

@@ -32,19 +32,19 @@
 
         
 
-        <form class="fp__search_menu_form">
+        <form class="fp__search_menu_form" action="{{ route('blogs') }}" method="GET">
                 <div class="row">
                     <div class="col-xl-6 col-md-5">
-                        <input type="text" placeholder="Search...">
+                        <input type="text" placeholder="Search..." name="search" value="{{ @request()->search }}">
                     </div>
+                     {{ $carbon }}
+                 
                     <div class="col-xl-4 col-md-4">
-                        <select class="nice-select">
-                            <option value="">select country</option>
-                            <option value="">bangladesh</option>
-                            <option value="">nepal</option>
-                            <option value="">japan</option>
-                            <option value="">korea</option>
-                            <option value="">thailand</option>
+                        <select class="nice-select" name="category">
+                            <option value="">All</option>
+                            @foreach($categories as $category)
+                            <option @selected(@request()->category == $category->slug) value="{{ $category->slug }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-xl-2 col-md-3">
@@ -57,46 +57,51 @@
             <div class="row">
                 @foreach($blogs as $blog)
                 <div class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp" data-wow-duration="1s">
-                    <div class="fp__single_blog">
-                        <a href="{{ route('blog.details', $blog->slug) }}" class="fp__single_blog_img">
-                            <img src="{{ asset($blog->image) }}" alt="{{ $blog->title }}" class="img-fluid w-100">
-                        </a>
-                        <div class="fp__single_blog_text">
-                            <a class="category" href="#">{{ $blog->category->name }}</a>
-                            <ul class="d-flex flex-wrap mt_15">
-                                <li><i class="fas fa-user"></i>{{ $blog->user->name }}</li>
-                                <li><i class="fas fa-calendar-alt"></i>{{ date('d m Y', strtotime($blog->created_at)) }}</li>
-                                <li><i class="fas fa-comments"></i> 25 comment</li>
-                            </ul>
-                            <a class="title" href="{{ route('blog.details', $blog->slug) }}">{!! truncate($blog->title,20) !!}</a>
+                        <div class="fp__single_blog">
+                            <a href="{{ route('blog.details', $blog->slug) }}" class="fp__single_blog_img">
+                                <img src="{{ asset($blog->image) }}" alt="{{ $blog->title }}" class="img-fluid w-100">
+                            </a>
+                            <div class="fp__single_blog_text">
+                                <a class="category" href="{{ route('blogs',['category' => $blog->category->slug]) }}">{{ $blog->category->name }}</a>
+                                <ul class="d-flex flex-wrap mt_15">
+                                    <li><i class="fas fa-user"></i>{{ $blog->user->name }}</li>
+                                    <li><i class="fas fa-calendar-alt"></i>{{ date('d M Y H:i A', strtotime($blog->created_at))  }}</li>
+                                    <li><i class="fas fa-comments"></i> {{ $blog->comments_count }} comment</li>
+                                </ul>
+                                <a class="fancy-link-1" href="{{ route('blog.details',$blog->slug) }}">{{ truncate($blog->title) }}</a>
+                            </div>
                         </div>
+
                     </div>
-                </div>
                 @endforeach
+
+                @if($blogs->isEmpty())
+                    <h5 class="text-center">No Blog Found!</h5>
+                @endif
               
                 @if(@$blogs->hasPages())
-            <div class="fp__pagination mt_60">
-                <div class="row">
-                    <div class="col-12">
-                        <!-- <nav aria-label="...">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fas fa-long-arrow-alt-left"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
-                                </li>
-                            </ul>
-                        </nav> -->
-                        {{ $blogs->links() }}
+                    <div class="fp__pagination mt_60">
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- <nav aria-label="...">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#"><i class="fas fa-long-arrow-alt-left"></i></a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </nav> -->
+                                {{ $blogs->links() }}
+                            </div>
+                        <!--  .col-12 -->
+                        </div>
+                    <!--  row -->
                     </div>
-                  <!--  .col-12 -->
-                </div>
-               <!--  row -->
-            </div>
             <!-- fp__pagination-->
             @endif
         </div>

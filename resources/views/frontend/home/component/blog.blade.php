@@ -13,56 +13,25 @@
                     </div>
                 </div>
                 <div class="row">
+                   @foreach($latestBlogs as $blog)
                     <div class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp" data-wow-duration="1s">
                         <div class="fp__single_blog">
-                            <a href="#" class="fp__single_blog_img">
-                                <img src="{{ asset('frontend/images/menu2_img_1.jpg') }}" alt="blog" class="img-fluid w-100">
+                            <a href="{{ route('blog.details', $blog->slug) }}" class="fp__single_blog_img">
+                                <img src="{{ asset($blog->image) }}" alt="{{ $blog->title }}" class="img-fluid w-100">
                             </a>
                             <div class="fp__single_blog_text">
-                                <a class="category" href="#">chicken</a>
-                                <ul class="d-flex flex-wrap m_15">
-                                    <li><i class="fas fa-user"></i>admin</li>
-                                    <li><i class="fas fa-calendar-alt"></i> 25 oct 2022</li>
-                                    <li><i class="fas fa-comments"></i> 25 comment</li>
+                                <a class="category" href="{{ route('blogs',['category' => $blog->category->slug]) }}">{{ $blog->category->name }}</a>
+                                <ul class="d-flex flex-wrap mt_15">
+                                    <li><i class="fas fa-user"></i>{{ $blog->user->name }}</li>
+                                    <li><i class="fas fa-calendar-alt"></i>{{ date('d M Y H:i A', strtotime($blog->created_at))  }}</li>
+                                    <li><i class="fas fa-comments"></i> {{ $blog->comments_count }} comment</li>
                                 </ul>
-                                <a class="fancy-link-1" href="blog_details.html">Competently supply customized initiatives</a>
+                                <a class="fancy-link-1" href="{{ route('blog.details',$blog->slug) }}">{{ truncate($blog->title) }}</a>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp" data-wow-duration="1s">
-                        <div class="fp__single_blog">
-                            <a href="#" class="fp__single_blog_img">
-                                <img src="{{ asset('frontend/images/menu2_img_2.jpg') }}" alt="blog" class="img-fluid w-100">
-                            </a>
-                            <div class="fp__single_blog_text">
-                                <a class="category" href="#">kabab</a>
-                                <ul class="d-flex flex-wrap m_15">
-                                    <li><i class="fas fa-user"></i>admin</li>
-                                    <li><i class="fas fa-calendar-alt"></i> 27 oct 2022</li>
-                                    <li><i class="fas fa-comments"></i> 41 comment</li>
-                                </ul>
-                                <a class="fancy-link-1" href="blog_details.html">Unicode UTF8 Character Sets They Sltimate
-                                    Guide Systems</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp" data-wow-duration="1s">
-                        <div class="fp__single_blog">
-                            <a href="#" class="fp__single_blog_img">
-                                <img src="{{ asset('frontend/images/menu2_img_3.jpg') }}" alt="blog" class="img-fluid w-100">
-                            </a>
-                            <div class="fp__single_blog_text">
-                                <a class="category" href="#">grill</a>
-                                <ul class="d-flex flex-wrap m_15">
-                                    <li><i class="fas fa-user"></i>admin</li>
-                                    <li><i class="fas fa-calendar-alt"></i> 27 oct 2022</li>
-                                    <li><i class="fas fa-comments"></i> 32 comment</li>
-                                </ul>
-                                <a class="fancy-link-1" href="blog_details.html">Quality Foods Requirments For Every Human
-                                    Body’s</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
