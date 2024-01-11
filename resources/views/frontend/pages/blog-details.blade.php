@@ -18,7 +18,7 @@
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>blog details</h1>
+                    <h1 class="gradient-text">blog details</h1>
                     <ul>
                         <li><a href="index.html">home</a></li>
                         <li><a href="#">blog details</a></li>
@@ -100,73 +100,46 @@
 
                     <div class="fp__comment mt_100 xs_mt_70 wow fadeInUp" data-wow-duration="1s">
                         <h4>03 Comments</h4>
+                        @foreach($comments as $comment)
+                        
                         <div class="fp__single_comment m-0 border-0">
-                            <img src="images/comment_img_1.png" alt="review" class="img-fluid">
+                            <img src="{{ asset($comment->user->avatar) }}" alt="review" class="img-fluid">
                             <div class="fp__single_comm_text">
-                                <h3>Michel Holder <span>29 oct 2022 </span></h3>
+                                <h3>{{ $comment->user->name }} <span>{{ date('d M Y H:i A', strtotime($comment->created_at)) }} </span></h3>
                                 <p>Sure there isn't anything embarrassing hiidden in the
                                     middles of text. All erators on the Internet
                                     tend to repeat predefined chunks</p>
                                 <a href="#">Reply <i class="fas fa-reply-all"></i></a>
                             </div>
                         </div>
-                        <div class="fp__single_comment">
-                            <img src="images/chef_1.jpg" alt="review" class="img-fluid">
-                            <div class="fp__single_comm_text">
-                                <h3>salina khan <span>29 oct 2022 </span></h3>
-                                <p>Sure there isn't anything embarrassing hiidden in the
-                                    middles of text. All erators on the Internet
-                                    tend to repeat predefined chunks</p>
-                                <a href="#">Reply <i class="fas fa-reply-all"></i></a>
+                        @endforeach
+                                             
+                        @if(@$comments->hasPages())
+                            <div class="fp__pagination mt_60">
+                                <div class="row">
+                                    <div class="col-12">                       
+                                        {{ $comments->links() }}
+                                    </div>
+                                <!--  .col-12 -->
+                                </div>
+                            <!--  row -->
                             </div>
-                        </div>
-                        <div class="fp__single_comment replay">
-                            <img src="images/comment_img_2.png" alt="review" class="img-fluid">
-                            <div class="fp__single_comm_text">
-                                <h3>Mouna Sthesia <span>29 oct 2022 </span></h3>
-                                <p>Sure there isn't anything embarrassing hiidden in the
-                                    middles of text. All erators on the Internet
-                                    tend to repeat predefined chunks</p>
-                                <a href="#">Reply <i class="fas fa-reply-all"></i></a>
-                            </div>
-                        </div>
-                        <div class="fp__single_comment">
-                            <img src="images/chef_3.jpg" alt="review" class="img-fluid">
-                            <div class="fp__single_comm_text">
-                                <h3>marjan janifar <span>29 oct 2022 </span></h3>
-                                <p>Sure there isn't anything embarrassing hiidden in the
-                                    middles of text. All erators on the Internet
-                                    tend to repeat predefined chunks</p>
-                                <a href="#">Reply <i class="fas fa-reply-all"></i></a>
-                            </div>
-                        </div>
-                        <a href="#" class="load_more">load More</a>
+                            <!-- fp__pagination-->
+                        @endif
                     </div>
 
                     <div class="comment_input mt_100 xs_mt_70 wow fadeInUp" data-wow-duration="1s">
                         <h4>Leave A Comment</h4>
-                        <p>Your email address will not be published. Required fields are marked *</p>
-                        <form>
+                        <p> Required fields are marked *</p>
+                        <form action="{{ route('blog.comment.store',$blog->id) }}" method="POST">
+                            @csrf
                             <div class="row">
-                                <div class="col-xl-6 col-md-6">
-                                    <label>name</label>
-                                    <div class="fp__contact_form_input">
-                                        <span><i class="fal fa-user-alt"></i></span>
-                                        <input type="text" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <label>email</label>
-                                    <div class="fp__contact_form_input">
-                                        <span><i class="fal fa-user-alt"></i></span>
-                                        <input type="email" placeholder="Mail">
-                                    </div>
-                                </div>
+                               
                                 <div class="col-xl-12">
-                                    <label>comment</label>
+                                    <label>comment *</label>
                                     <div class="fp__contact_form_input textarea">
                                         <span><i class="fal fa-user-alt"></i></span>
-                                        <textarea rows="5" placeholder="Your Comment"></textarea>
+                                        <textarea rows="5" placeholder="Your Comment" name="comment"></textarea>
                                     </div>
                                     <button type="submit" class="common_btn mt_20">Submit comment</button>
                                 </div>

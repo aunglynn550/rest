@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\BlogCommentDataTable;
 use App\DataTables\BlogDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BlogCreateRequest;
 use App\Http\Requests\Admin\BlogUpdateRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\BlogComment;
 use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\JsonResponse;
@@ -117,5 +119,31 @@ class BlogController extends Controller
         }catch( \Exception $e){
             return response(['status'=> 'error', 'message'=> 'Something Went Wrong!']);
         }
+    }//end method
+
+    function blogComment(BlogCommentDataTable $dataTable){
+        return $dataTable->render('admin.blog.blog-comment.index');
+    }//end method
+
+    function commentStatusUpdate(string $id){
+        $comment = BlogComment::find($id);
+
+        $comment->status = !$comment->status;
+        $comment->save();
+
+        toastr('Status Updated Successfully!');
+        return redirect()->back();
+    }//end method
+
+    function commentDestroy(string $id) : Response{
+        try{
+            $comment = BlogComment::findOrFail($id);        
+            $comment->delete();            
+            return response(['status'=> 'success', 'message'=> 'Deleted Successfully !']);
+        }catch( \Exception $e){
+            return response(['status'=> 'error', 'message'=> 'Something Went Wrong!']);
+        }
     }
+
+
 }

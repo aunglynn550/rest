@@ -7,6 +7,7 @@ use App\Models\AppDownload;
 use App\Models\BannerSlider;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\BlogComment;
 use App\Models\Chef;
 use App\Models\Counter;
 use App\Models\Coupon;
@@ -16,6 +17,7 @@ use App\Models\SectionTitle;
 use App\Models\Slider;
 use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -88,7 +90,8 @@ class FrontendController extends Controller
     }//end method
 
     public function blogDetails($slug){
-        $blog = Blog::where('slug',$slug)->where('status',1)->firstOrFail();
+        $blog = Blog::with('user')->where('slug',$slug)->where('status',1)->firstOrFail();
+        $comments = $blog->comments()->where('status',1)->orderBy('id','DESC')->paginate(15);
         $latestBlogs = Blog::select('id','title','slug','created_at','image')
                         ->where('status',1)
                         ->where('id','=',$blog->id)
@@ -99,8 +102,24 @@ class FrontendController extends Controller
 
         $nextBlog = Blog::select('id','title','slug','image')->where('id', '>', $blog->id)->orderBy('id','ASC')->first();
         $previousBlog = Blog::select('id','title','slug','image')->where('id', '<', $blog->id)->orderBy('id','DESC')->first();
-        return view('frontend.pages.blog-details',compact('blog','latestBlogs','categories','nextBlog','previousBlog'));
+        return view('frontend.pages.blog-details',compact('blog','latestBlogs','categories','nextBlog','previousBlog','comments'));
     }//end method
+
+    function blogCommentStore(Request $request, string $blog_id){
+        $request->validate([
+            'comment' => ['required','max:255']
+        ]);
+        Blog::findOrFail($blog_id);
+        $comment = new BlogComment();
+        $comment->blog_id = $blog_id;
+        $comment->user_id = auth()->user()->id;
+        $comment->comment = $request->comment;
+        $comment->created_at = Carbon::now('UTC');
+        $comment->save();
+
+        toastr('Comment submitted successfully and waiting to approve.');
+        return redirect()->back();
+    }
 
     //<!--=============================//
     //           End Pages             //

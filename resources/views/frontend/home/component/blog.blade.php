@@ -20,12 +20,12 @@
                             </a>
                             <div class="fp__single_blog_text">
                                 <a class="category" href="#">chicken</a>
-                                <ul class="d-flex flex-wrap mt_15">
+                                <ul class="d-flex flex-wrap m_15">
                                     <li><i class="fas fa-user"></i>admin</li>
                                     <li><i class="fas fa-calendar-alt"></i> 25 oct 2022</li>
                                     <li><i class="fas fa-comments"></i> 25 comment</li>
                                 </ul>
-                                <a class="title" href="blog_details.html">Competently supply customized initiatives</a>
+                                <a class="fancy-link-1" href="blog_details.html">Competently supply customized initiatives</a>
                             </div>
                         </div>
                     </div>
@@ -36,12 +36,12 @@
                             </a>
                             <div class="fp__single_blog_text">
                                 <a class="category" href="#">kabab</a>
-                                <ul class="d-flex flex-wrap mt_15">
+                                <ul class="d-flex flex-wrap m_15">
                                     <li><i class="fas fa-user"></i>admin</li>
                                     <li><i class="fas fa-calendar-alt"></i> 27 oct 2022</li>
                                     <li><i class="fas fa-comments"></i> 41 comment</li>
                                 </ul>
-                                <a class="title" href="blog_details.html">Unicode UTF8 Character Sets They Sltimate
+                                <a class="fancy-link-1" href="blog_details.html">Unicode UTF8 Character Sets They Sltimate
                                     Guide Systems</a>
                             </div>
                         </div>
@@ -53,12 +53,12 @@
                             </a>
                             <div class="fp__single_blog_text">
                                 <a class="category" href="#">grill</a>
-                                <ul class="d-flex flex-wrap mt_15">
+                                <ul class="d-flex flex-wrap m_15">
                                     <li><i class="fas fa-user"></i>admin</li>
                                     <li><i class="fas fa-calendar-alt"></i> 27 oct 2022</li>
                                     <li><i class="fas fa-comments"></i> 32 comment</li>
                                 </ul>
-                                <a class="title" href="blog_details.html">Quality Foods Requirments For Every Human
+                                <a class="fancy-link-1" href="blog_details.html">Quality Foods Requirments For Every Human
                                     Body’s</a>
                             </div>
                         </div>
