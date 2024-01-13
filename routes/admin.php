@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admim\CounterController;
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ChatController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,7 +69,12 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     Route::get('blogs/comments',[BlogController::class, 'blogComment'])->name('blogs.comments.index');
     Route::get('blogs/comments/{id}',[BlogController::class, 'commentStatusUpdate'])->name('blogs.comments.update');
     Route::delete('blogs/comments/{id}',[BlogController::class, 'commentDestroy'])->name('blogs.comments.destroy');
+
     Route::resource('blogs',BlogController::class);
+
+    // About Routes //
+    Route::get('about', [AboutController::class, 'index'])->name('about.index');
+    Route::put('about', [AboutController::class, 'update'])->name('about.update');
 
     
 

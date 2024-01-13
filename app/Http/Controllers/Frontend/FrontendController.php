@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\AppDownload;
 use App\Models\BannerSlider;
 use App\Models\Blog;
@@ -87,6 +88,27 @@ class FrontendController extends Controller
         $testimonials = Testimonial::where(['status'=>1])->paginate(1);
         return view('frontend.pages.testimonial',compact('testimonials'));
     }//end method
+
+    function about() : View{
+        $keys = [
+            'why_choose_top_title',
+            'why_choose_main_title',
+            'why_choose_sub_title',            
+            'chef_top_title',
+            'chef_main_title',
+            'chef_sub_title',
+            'testimonial_top_title',
+            'testimonial_main_title',
+            'testimonial_sub_title'
+        ];
+        $about = About::first();  
+        $whyChooseUs = WhyChooseUs::where('status',1)->get();
+        $sectionTitles = SectionTitle::whereIn('key',$keys)->pluck('value','key');
+        $chefs = Chef::where(['show_at_home' => 1, 'status' => 1])->get();
+        $counter = Counter::first();
+        $testimonials = Testimonial::where(['show_at_home'=> 1,'status'=>1])->get();
+        return view('frontend.pages.about',compact('about','whyChooseUs','sectionTitles','chefs','counter','testimonials'));
+    }
 
     public function blog(Request $request){
         // $blogs = Blog::with(['category','user'])->where('status',1)->latest()->paginate(9);

@@ -12,6 +12,8 @@
     --clr-accent-300: hsl(358, 72%, 65%);
     --clr-accent-400: hsl(358, 72%, 50%);
     --clr-accent-500: hsl(358, 72%, 35%);
+
+    --text-shadow: 2px 2px 0 var(--clr-accent-400), 4px 4px 0 var(--clr-secondary-400), 6px 6px 0 var(--clr-primary-400);
 }
 
 ul,
@@ -984,7 +986,7 @@ button {
 }
 
 .fp__banner_text h3 {
-    text-shadow: 2px 2px 0 var(--clr-accent-300), 4px 4px 0 var(--clr-secondary-400), 6px 6px 0 var(--clr-accent-400);
+    text-shadow:var(--text-shadow);
     color: var(--colorPrimary) !important;
     text-transform: capitalize;
     font-size: 30px;
@@ -2515,7 +2517,6 @@ footer {
 
 .fp__breadcrumb_overlay {
     padding: 250px 0px 125px 0px;
-    background: var(--colorPrimary);
     position: relative;
 }
 
@@ -6270,7 +6271,7 @@ CHECKOUT PAGE START
     text-decoration: none;
     background-image: linear-gradient(90deg, #cde2d1, #0f6d11);;
     background-size: 0% 3px; /* prop => width, height*/
-    background-position: left 1.4em;
+    background-position: left 1em;
     background-repeat: no-repeat;
     padding-block-end: 0.25em;
     transition: color 500ms, background-size 500ms;
