@@ -24,7 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                         <ul class="droap_menu">
-                            <li><a href="menu_details.html">menu details</a></li>
+                            <li><a. href="menu_details.html">menu details</a.</li>
                             <li><a href="blog_details.html">blog details</a></li>
                             <li><a href="cart_view.html">cart view</a></li>
                             <li><a href="check_out.html">checkout</a></li>
@@ -36,8 +36,8 @@
                             <li><a href="sign_in.html">sign in</a></li>
                             <li><a href="sign_up.html">sign up</a></li>
                             <li><a href="forgot_password.html">forgot password</a></li>
-                            <li><a href="privacy_policy.html">privacy policy</a></li>
-                            <li><a href="terms_condition.html">terms and condition</a></li>
+                            <li><a href="{{ route('privacy-policy.index') }}">privacy policy</a></li>
+                            <li><a href="{{ route('terms-and-conditions.index') }}">terms and condition</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

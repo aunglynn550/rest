@@ -13,9 +13,11 @@ use App\Models\Chef;
 use App\Models\Counter;
 use App\Models\Coupon;
 use App\Models\DailyOffer;
+use App\Models\PrivacyPolicy;
 use App\Models\Product;
 use App\Models\SectionTitle;
 use App\Models\Slider;
+use App\Models\TermsAndCondition;
 use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use Carbon\Carbon;
@@ -88,6 +90,18 @@ class FrontendController extends Controller
         $testimonials = Testimonial::where(['status'=>1])->paginate(1);
         return view('frontend.pages.testimonial',compact('testimonials'));
     }//end method
+
+    public function privacyPolicy(){
+        $privacyPolicy = PrivacyPolicy::first();
+        return view('frontend.pages.privacy-policy',compact('privacyPolicy'));
+    }//end method
+
+    public function termsAndConditions(){
+        $termsAndConditions = TermsAndCondition::first();
+        return view('frontend.pages.terms-and-conditions',compact('termsAndConditions'));
+    }//end method
+
+    
 
     function about() : View{
         $keys = [

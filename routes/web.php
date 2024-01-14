@@ -69,8 +69,14 @@ Route::post('/blogs/comment/{blog_id}', [FrontendController::class, 'blogComment
 //About Routes //
 Route::get('/about',[FrontendController::class, 'about'])->name('about');
 
+// Privacy Policy Route ///
+Route::get('/privacy-policy',[FrontendController::class, 'privacyPolicy'])->name('privacy-policy.index');
+
+//Terms and Conditions Route
+Route::get('/terms-and-conditions',[FrontendController::class, 'termsAndConditions'])->name('terms-and-conditions.index');
+
 //  Show Product Page
-Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
+Route::get('/ter/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
 
 //Product Model Routes//
 Route::get('/load-product-model/{productId}', [FrontendController::class, 'loadProductModel'])->name('load-product-model');

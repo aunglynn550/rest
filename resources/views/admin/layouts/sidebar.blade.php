@@ -135,7 +135,7 @@
                 <li><a class="nav-link" href="{{ route('admin.banner-slider.index') }}">Banner Slider</a></li>
                 <li><a class="nav-link" href="{{ route('admin.chef.index') }}">Chef</a></li>
                 <li><a class="nav-link" href="{{ route('admin.app-download.index') }}">App Download</a></li>
-                <li><a class="nav-link" href="{{ route('admin.testimonial.index') }}">Testimonial</a></li>
+                <li><a class="nav-link" href="{{ route('admin.testimonial.index') }}">Testimonial</a></li>             
                 <li><a class="nav-link" href="{{ route('admin.counter.index') }}">Counter</a></li>
                                                                                                            
               </ul>
@@ -144,7 +144,9 @@
            <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Pages</span></a>
               <ul class="dropdown-menu">                                                    
-                <li><a class="nav-link" href="{{ route('admin.about.index') }}">About</a></li>                 
+                <li><a class="nav-link" href="{{ route('admin.about.index') }}">About</a></li>   
+                <li><a class="nav-link" href="{{ route('admin.privacy-policy.index') }}">Privacy Policy</a></li>
+                <li><a class="nav-link" href="{{ route('admin.terms-and-conditions.index') }}">Terms And COnditions</a></li>              
               </ul>
            </li> 
             <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-fire"></i>Settings</a></li>              
