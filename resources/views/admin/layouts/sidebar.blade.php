@@ -147,6 +147,7 @@
                 <li><a class="nav-link" href="{{ route('admin.about.index') }}">About</a></li>   
                 <li><a class="nav-link" href="{{ route('admin.privacy-policy.index') }}">Privacy Policy</a></li>
                 <li><a class="nav-link" href="{{ route('admin.terms-and-conditions.index') }}">Terms And COnditions</a></li>              
+                <li><a class="nav-link" href="{{ route('admin.contact.index') }}">Contact</a></li>              
               </ul>
            </li> 
             <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-fire"></i>Settings</a></li>              

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChefController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
@@ -86,6 +87,9 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
       Route::get('terms-and-conditions', [TermsAndConditionsController::class, 'index'])->name('terms-and-conditions.index');
       Route::put('terms-and-conditions', [TermsAndConditionsController::class, 'update'])->name('terms-and-conditions.update');
     
+     // Contact Routes //
+      Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+      Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
