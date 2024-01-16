@@ -69,6 +69,11 @@ Route::post('/blogs/comment/{blog_id}', [FrontendController::class, 'blogComment
 //About Routes //
 Route::get('/about',[FrontendController::class, 'about'])->name('about');
 
+
+//Contact Routes //
+Route::get('/contact',[FrontendController::class, 'contact'])->name('contact');
+Route::post('/contact',[FrontendController::class, 'contactSendMessage'])->name('contact.send-message');
+
 // Privacy Policy Route ///
 Route::get('/privacy-policy',[FrontendController::class, 'privacyPolicy'])->name('privacy-policy.index');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\About;
 use App\Models\AppDownload;
 use App\Models\BannerSlider;
@@ -10,6 +11,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
 use App\Models\Chef;
+use App\Models\Contact;
 use App\Models\Counter;
 use App\Models\Coupon;
 use App\Models\DailyOffer;
@@ -22,7 +24,9 @@ use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Mail;
 use Illuminate\View\View;
 
 class FrontendController extends Controller
@@ -101,7 +105,23 @@ class FrontendController extends Controller
         return view('frontend.pages.terms-and-conditions',compact('termsAndConditions'));
     }//end method
 
-    
+    function contact(){
+        $contact = Contact::first();
+        return view('frontend.pages.contact', compact('contact'));
+    }//end method
+
+    function contactSendMessage(Request $request) {
+       $request->validate([
+        'name' => ['required' , 'max:255'],
+        'email' => ['required' , 'max:255'],
+        'subject' => ['required' , 'max:255'],
+        'message' => ['required' , 'max:255'],
+       ]);
+    //   dd(config('mail'));
+       Mail::send(new ContactMail($request->name, $request->email, $request->subject, $request->message));
+
+       return response(['status' => 'success' , 'message' => 'Message Sent Successfully']);
+    }
 
     function about() : View{
         $keys = [
