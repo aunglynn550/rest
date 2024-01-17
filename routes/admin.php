@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admim\CounterController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\ReservationTimeController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProfileController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\ProductSizeController;
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TermsAndConditionsController;
@@ -80,16 +82,22 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     Route::put('about', [AboutController::class, 'update'])->name('about.update');
 
      // Privacy Policy Routes //
-     Route::get('privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
-     Route::put('privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy-policy.update');
+    Route::get('privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
+    Route::put('privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy-policy.update');
 
       // Terms and Conditions Routes //
-      Route::get('terms-and-conditions', [TermsAndConditionsController::class, 'index'])->name('terms-and-conditions.index');
-      Route::put('terms-and-conditions', [TermsAndConditionsController::class, 'update'])->name('terms-and-conditions.update');
-    
-     // Contact Routes //
-      Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
-      Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
+    Route::get('terms-and-conditions', [TermsAndConditionsController::class, 'index'])->name('terms-and-conditions.index');
+    Route::put('terms-and-conditions', [TermsAndConditionsController::class, 'update'])->name('terms-and-conditions.update');
+  
+    // Contact Routes //
+    Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
+
+    // Reservation Routes //
+    Route::resource('/reservation-time', ReservationTimeController::class);
+    Route::get('/reservation', [ReservationController::class,'index'])->name('reservation.index');
+    Route::post('/reservation', [ReservationController::class,'update'])->name('reservation.update');
+    Route::delete('/reservation/{id}', [ReservationController::class,'destroy'])->name('reservation.destroy');
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');

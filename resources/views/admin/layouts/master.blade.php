@@ -23,6 +23,8 @@
 
   <!-- Summer Note For Text Editor CSS -->
   <link rel="stylesheet" href="{{asset('admin/assets/modules/summernote/summernote-bs4.css')}}">
+  <!-- Time Picker--- -->
+  <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
   
   <!-- Icon Picker CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap-iconpicker.css') }}">
@@ -73,6 +75,8 @@
   
   <!-- Summer Note JS For Text Editor -->
   <script src="{{asset('admin/assets/modules/summernote/summernote-bs4.js')}}"></script>
+  <!-- Time Picker ---->
+  <script src="{{asset('admin/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"></script>
   <!-- Toastr JS -->
   <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
   <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
