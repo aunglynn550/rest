@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
+use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentGatewaySettingController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
@@ -98,6 +99,10 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     Route::get('/reservation', [ReservationController::class,'index'])->name('reservation.index');
     Route::post('/reservation', [ReservationController::class,'update'])->name('reservation.update');
     Route::delete('/reservation/{id}', [ReservationController::class,'destroy'])->name('reservation.destroy');
+    
+    // News Letter Routes //
+    Route::get('/news-letter', [NewsLetterController::class,'index'])->name('news-letter.index');
+    Route::post('/news-letter', [NewsLetterController::class,'sendNewsLetter'])->name('news-letter.send');
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');

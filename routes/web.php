@@ -73,8 +73,13 @@ Route::get('/about',[FrontendController::class, 'about'])->name('about');
 //Contact Routes //
 Route::get('/contact',[FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact',[FrontendController::class, 'contactSendMessage'])->name('contact.send-message');
+
 // Reservation Routes //
 Route::post('/reservation',[FrontendController::class, 'reservation'])->name('reservation.store');
+
+// NewsLetter Routes //
+Route::post('/subscribe-newsletter',[FrontendController::class, 'subscribeNewsletter'])->name('subscribe-newsletter');
+
 // Privacy Policy Route ///
 Route::get('/privacy-policy',[FrontendController::class, 'privacyPolicy'])->name('privacy-policy.index');
 
