@@ -4,6 +4,7 @@ use App\Http\Controllers\Admim\CounterController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\ReservationTimeController;
+use App\Http\Controllers\Admin\SocialLinkController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProfileController;
@@ -103,6 +104,9 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     // News Letter Routes //
     Route::get('/news-letter', [NewsLetterController::class,'index'])->name('news-letter.index');
     Route::post('/news-letter', [NewsLetterController::class,'sendNewsLetter'])->name('news-letter.send');
+
+    // Social Link Routes //
+    Route::resource('social-link', SocialLinkController::class);
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
