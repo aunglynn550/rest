@@ -152,9 +152,15 @@
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Reservations</span></a>
               <ul class="dropdown-menu">                                                    
                 <li><a class="nav-link" href="{{ route('admin.reservation-time.index') }}">Reservation Times</a></li>                           
-                <li><a class="nav-link" href="{{ route('admin.reservation.index') }}">Reservations</a></li>                           
+                <li><a class="nav-link" href="{{ route('admin.reservation.index') }}">Reservations</a></li>                                           
               </ul>
            </li> 
+           <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Footer</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{ route('admin.footer-info.index') }}">Footer Info</a></li>                                                                                                                                                     
+              </ul>
+           </li>
             <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-fire"></i>Settings</a></li>              
             <!-- <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>

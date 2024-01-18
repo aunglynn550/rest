@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admim\CounterController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\ReservationTimeController;
 use App\Http\Controllers\Admin\SocialLinkController;
 use Illuminate\Support\Facades\Route;
@@ -107,6 +108,10 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
 
     // Social Link Routes //
     Route::resource('social-link', SocialLinkController::class);
+
+    //Footer Routes//
+    Route::get('footer-info', [FooterInfoController::class,'index'])->name('footer-info.index');
+    Route::put('footer-info', [FooterInfoController::class,'update'])->name('footer-info.update');
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
