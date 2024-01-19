@@ -17,6 +17,7 @@ use App\Models\Coupon;
 use App\Models\DailyOffer;
 use App\Models\PrivacyPolicy;
 use App\Models\Product;
+use App\Models\ProductRating;
 use App\Models\Reservation;
 use App\Models\SectionTitle;
 use App\Models\Slider;
@@ -251,16 +252,60 @@ class FrontendController extends Controller
 
     public function showProduct(string $slug):View{
 
-            $product = Product::with(['productImages','productSizes','productOptions'])->where(['slug'=> $slug,'status'=>1])->firstOrFail();
+            $product = Product::with(['productImages','productSizes','productOptions'])
+                        ->where(['slug'=> $slug,'status'=>1])
+                        ->withAvg('reviews','rating')
+                        ->withCount('reviews')
+                        ->firstOrFail();
             $relatedProducts = Product::where('category_id',$product->category_id)
             ->where('id','!=',$product->id)->take(8)->latest()->get();
-            return view('frontend.pages.product-view',compact('product','relatedProducts'));
+            $reviews = ProductRating::where(['product_id'=>$product->id,'status' => 1])->paginate(10);
+            return view('frontend.pages.product-view',compact('product','relatedProducts','reviews'));
     }//end method
 
     public function loadProductModel($productId){
        $product = Product::with(['productSizes','productOptions'])->findOrFail($productId);
        return view('frontend.layout.ajax-files.product-popup-model',compact('product'))->render();
     }//end method
+
+    function productReviewStore(Request $request){
+        $request->validate([
+            'rating' => ['required','min:1','max:5','integer'],
+            'review' => ['required','max:500'],
+            'product_id' => ['required','integer']
+        ]);
+        $user = Auth::user();
+
+        // Check if user has Purchased the product
+        $hasPurchased = $user->orders()->whereHas('orderItems' , function($query) use ($request){
+            $query->where('product_id', $request->product_id);
+        })
+        ->where('order_status','delivered')
+        ->get();  
+
+        if(count($hasPurchased) == 0){
+            throw ValidationException::withMessages(['Please Buy The Product Before Submit a Review']);
+        }
+
+
+        // Check if user has already reviewed the product
+        $alreadyReviewed = ProductRating::where(['user_id'=> $user->id,'product_id' => $request->product_id])->exists();
+        
+        if($alreadyReviewed){
+            throw ValidationException::withMessages(['You have already reviewed this product']);
+        }
+
+        $review = new ProductRating();
+        $review->user_id = $user->id;
+        $review->product_id = $request->product_id;
+        $review->rating = $request->rating;
+        $review->review = $request->review;
+        $review->status = 0;
+        $review->save();
+
+        toastr('Review Added successfully and Waiting to be approved');
+        return redirect()->back();
+    }
 
     public function applyCoupon(Request $request){
         $subtotal = $request->subtotal;

@@ -6946,5 +6946,14 @@ CHECKOUT PAGE START
     border-color: var(--colorPrimary);
 }
 
-
+#rating_input{
+    width: 100%;
+    padding: 12px 20px;
+    outline: none;
+    resize: none;
+    border: 1px solid #eee;
+    border-radius: 2rem;
+    font-size: 1em;
+    font-weight: 300;
+}
   

@@ -96,6 +96,8 @@ Route::get('/ter/{slug}', [FrontendController::class, 'showProduct'])->name('pro
 //Product Model Routes//
 Route::get('/load-product-model/{productId}', [FrontendController::class, 'loadProductModel'])->name('load-product-model');
 
+// Product Review Route//
+Route::post('product-review',[FrontendController::class,'productReviewStore'])->name('product-review-store');
 
 // Add To Cart Route//
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');

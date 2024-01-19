@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductOptionController;
+use App\Http\Controllers\Admin\ProductReviewController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\SettingController;
@@ -130,6 +131,10 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
 
     // Product All Routes//
     Route::resource('product',ProductController::class);
+     // Product Review All Routes//
+     Route::get('product-reviews',[ProductReviewController::class,'index'])->name('product-reviews.index');
+     Route::post('product-reviews-update',[ProductReviewController::class,'statusUpdate'])->name('product-reviews-status.update');
+     Route::delete('product-reviews-destroy',[ProductReviewController::class,'destory'])->name('product-reviews.destroy');
 
      // Product Gallery All Routes//
      Route::get('product-gallery/{product}',[ProductGalleryController::class,'index'])->name('product-gallery.show.index');
