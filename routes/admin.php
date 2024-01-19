@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admim\CounterController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\CustomPageBuilderController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\MenuBuilderController;
 use App\Http\Controllers\Admin\ReservationTimeController;
@@ -116,6 +117,9 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     
     //Menu Builder Routes //
     Route::get('menu-builder', [MenuBuilderController::class,'index'])->name('menu-builder.index');
+
+    //Custom Page Builder Routes //
+    Route::resource('custom-page-builder',CustomPageBuilderController::class);
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');

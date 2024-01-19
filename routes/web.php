@@ -2,6 +2,7 @@
 use App\Events\RTOrderPlacedNotificationEvent;
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Frontend\CustomPageController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CartController;
@@ -79,6 +80,9 @@ Route::post('/reservation',[FrontendController::class, 'reservation'])->name('re
 
 // NewsLetter Routes //
 Route::post('/subscribe-newsletter',[FrontendController::class, 'subscribeNewsletter'])->name('subscribe-newsletter');
+
+// Custom Page Routes //
+Route::get('/page/{slug}', CustomPageController::class);
 
 // Privacy Policy Route ///
 Route::get('/privacy-policy',[FrontendController::class, 'privacyPolicy'])->name('privacy-policy.index');
