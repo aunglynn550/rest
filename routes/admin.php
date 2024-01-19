@@ -4,6 +4,7 @@ use App\Http\Controllers\Admim\CounterController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\FooterInfoController;
+use App\Http\Controllers\Admin\MenuBuilderController;
 use App\Http\Controllers\Admin\ReservationTimeController;
 use App\Http\Controllers\Admin\SocialLinkController;
 use Illuminate\Support\Facades\Route;
@@ -112,6 +113,9 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     //Footer Routes//
     Route::get('footer-info', [FooterInfoController::class,'index'])->name('footer-info.index');
     Route::put('footer-info', [FooterInfoController::class,'update'])->name('footer-info.update');
+    
+    //Menu Builder Routes //
+    Route::get('menu-builder', [MenuBuilderController::class,'index'])->name('menu-builder.index');
 
     // Why Choose Us All Routes//
     Route::put('why-choose-title-update',[ WhyChooseUsController::class,'updateTitle'])->name('why-choose-title.update');
