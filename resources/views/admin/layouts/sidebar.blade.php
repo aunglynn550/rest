@@ -12,10 +12,13 @@
                 $unseenMessages = \App\Models\Chat::where(['receiver_id' => auth()->user()->id, 'seen' => 0])->count();
               @endphp
 
-            <li class="dropdown dropdown-list-toggle"><a href="{{ route('admin.chat.index') }}" data-toggle="dropdown" 
-              class="nav-link nav-link-lg message-envelope {{ $unseenMessages > 0 ? 'beep' : '' }}">
-              <i class="far fa-envelope"></i></a>                             
-            </li>
+              @if(auth()->user()->id === 1)
+              <li class="dropdown dropdown-list-toggle"><a href="{{ route('admin.chat.index') }}" data-toggle="dropdown" 
+                class="nav-link nav-link-lg message-envelope {{ $unseenMessages > 0 ? 'beep' : '' }}">
+                <i class="far fa-envelope"></i></a>                             
+              </li>
+              @endif
+           
             
               <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg 
               notification_beep {{ count($notifications) > 0 ? 'beep' : '' }}"><i class="far fa-bell"></i></a>
@@ -81,6 +84,7 @@
             <li class="menu-header">Starter</li>
             <li><a class="nav-link" href="{{ route('admin.slider.index') }}"><i class="far fa-square"></i> <span>Slider</span></a></li> 
             <li><a class="nav-link" href="{{ route('admin.daily-offer.index') }}"><i class="far fa-square"></i> <span>Daily Offers</span></a></li> 
+            <li><a class="nav-link" href="{{ route('admin.admin-management.index') }}"><i class="far fa-square"></i> <span>Admin Management</span></a></li> 
                   
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Orders</span></a>
@@ -111,8 +115,9 @@
                 <li><a class="nav-link" href="{{ route('admin.payment-setting.index') }}">Payment Gatways</a></li>                                         
               </ul>
            </li>
-              
-            <li><a class="nav-link" href="{{ route('admin.chat.index') }}"><i class="fas fa-fire"></i>Message</a></li>
+              @if(auth()->user()->id === 1)
+                <li><a class="nav-link" href="{{ route('admin.chat.index') }}"><i class="fas fa-fire"></i>Message</a></li>
+              @endif
 
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Blog</span></a>

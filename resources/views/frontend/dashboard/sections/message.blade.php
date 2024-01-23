@@ -1,11 +1,3 @@
-<li>
-  <a class="cart_icon message_icon"
-    ><i class="fas fa-comment-alt-dots"></i> <span>7</span></a
-  >
-</li>
-
-
-
 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
     aria-labelledby="v-pills-settings-tab">
     <div class="fp_dashboard_body fp__change_password">

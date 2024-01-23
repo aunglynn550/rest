@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\AppDownloadController;
 use App\Http\Controllers\Admin\BannerSliderController;
 use App\Http\Controllers\Admin\BlogCategoryController;
@@ -152,6 +153,11 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
      
      // Delivery Area All Routes //
      Route::resource('delivery-area',DeliveryAreaController::class);
+
+     
+    // Admin Management All Routes//
+    Route::resource('admin-management',AdminManagementController::class);
+
      
      // Order Routes //
      Route::get('orders',[OrderController::class,'index'])->name('orders.index');
