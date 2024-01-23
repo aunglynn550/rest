@@ -84,6 +84,9 @@ Route::post('/subscribe-newsletter',[FrontendController::class, 'subscribeNewsle
 // Custom Page Routes //
 Route::get('/page/{slug}', CustomPageController::class);
 
+// Product Page Routes //
+Route::get('/products', [FrontendController::class,'product'])->name('product.index');
+
 // Privacy Policy Route ///
 Route::get('/privacy-policy',[FrontendController::class, 'privacyPolicy'])->name('privacy-policy.index');
 

@@ -10,6 +10,7 @@ use App\Models\BannerSlider;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
+use App\Models\Category;
 use App\Models\Chef;
 use App\Models\Contact;
 use App\Models\Counter;
@@ -244,6 +245,26 @@ class FrontendController extends Controller
 
         toastr('Comment submitted successfully and waiting to approve.');
         return redirect()->back();
+    }
+
+    function product(Request $request) : View{
+    
+        $products = Product::where(['status'=>1])->orderBy('id','DESC');                  
+
+        if($request->has('search') && $request->filled('search')){
+            $products->where(function ($query) use ($request){
+                $query->where('name','like','%'.$request->search.'%')
+                ->orWhere('long_description','like'.'%'.$request->search.'%');
+            });
+        }
+        if($request->has('category') && $request->filled('category')){
+            $products->whereHas('category',function ($query) use ($request){
+                $query->where('slug',$request->category);                
+            });
+        }
+        $products = $products->withAvg('reviews','rating')->withCount('reviews')->paginate(2);
+        $categories = Category::where('status',1)->get();
+        return view('frontend.pages.product', compact('products','categories'));
     }
 
     //<!--=============================//

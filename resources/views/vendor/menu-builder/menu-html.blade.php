@@ -54,6 +54,7 @@ $currentUrl = url()->current();
                                                                         <select class="form-control" name="" id="custom-menu-item-pages">
                                                                          <option value="">select</option>
                                                                          <option value="Home" data-url="/home">Home</option>
+                                                                         <option value="Products" data-url="/products">Products</option>
                                                                          <option value="About" data-url="/about">About</option>
                                                                          <option value="Blogs" data-url="/blogs">Blogs</option>
                                                                          <option value="Chefs" data-url="/chefs">Chefs</option>
