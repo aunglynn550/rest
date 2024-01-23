@@ -68,7 +68,7 @@ $categories = \App\Models\Category::all();
                                         </h5>
                                         <ul class="d-flex flex-wrap justify-content-center">
                                             <li><a href="javascript:;" onclick="loadProductModel('{{ $product->id }}')"><i class="fas fa-shopping-basket"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                            <li><a href="javascript:;" onclick="addToWishlist('{{ $product->id }}')"><i class="fa fa-heart"></i></a></li>
                                             <li><a href="#"><i class="far fa-eye"></i></a></li>
                                         </ul>
                                     </div>
