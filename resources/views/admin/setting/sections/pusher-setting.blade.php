@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="pusher-setting" role="tabpanel" aria-labelledby="home-tab4">
+<div class="tab-pane fade" id="pusher-setting" role="tabpanel" aria-labelledby="pusher-setting-tab4">
                                                 <div class="card">
                                                     <div class="card-body bordered">
                                                            <form action="{{ route('admin.pusher-setting.update') }}" method="POST">

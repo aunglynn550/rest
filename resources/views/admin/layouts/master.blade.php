@@ -28,6 +28,11 @@
   
   <!-- Icon Picker CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap-iconpicker.css') }}">
+  <!-- Color Picker CSS -->
+  <link rel="stylesheet" href="{{asset('admin/assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css')}}">
+
+  <!-- Input Tag CSS -->
+  <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}">
 
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -86,9 +91,14 @@
   <!-- JQuery Upload Image JS -->
   <script src="{{asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
   
-  
+  <!-- Color Picker JS -->
+  <script src="{{asset('admin/assets/modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
+
   <!-- Sweet Alert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Input Tag JS -->
+  <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
 
   <!-- Template JS File -->
   <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>

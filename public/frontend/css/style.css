@@ -66,6 +66,12 @@ img {
     object-fit: cover !important;
 }
 
+img.logo{
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 50%;
+}
+
 input,
 textarea {
     width: 100%;
@@ -89,7 +95,7 @@ button {
 }
 
 :root {
-    --colorPrimary: #0B502F;;
+    --colorPrimary: #0B502F;
     --paraColor: #494949;
     --colorBlack: #010f1c;
     --colorWhite: #ffffff;

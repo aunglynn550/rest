@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="mail-settings" role="tabpanel" aria-labelledby="mail-settings-tab4">
+<div class="tab-pane fade" id="mail-settings" role="tabpanel" aria-labelledby="mail-settings-tab4">
         <div class="card">
             <div class="card-body bordered">
                     <form action="{{ route('admin.mail-setting.update') }}" method="POST">

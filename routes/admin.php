@@ -194,6 +194,9 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
     Route::put('/general-setting',[SettingController::class,'updateGeneralSetting'])->name('general-setting.update');
     Route::put('/pusher-setting',[SettingController::class,'updatePusherSetting'])->name('pusher-setting.update');
     Route::put('/mail-setting',[SettingController::class,'updateMailSetting'])->name('mail-setting.update');
+    Route::put('/logo-setting',[SettingController::class,'updateLogoSetting'])->name('logo-setting.update');
+    Route::put('/appearance-setting',[SettingController::class,'updateAppearanceSetting'])->name('appearance-setting.update');
+    Route::put('/seo-setting',[SettingController::class,'updateSeoSetting'])->name('seo-setting.update');
 
    
 

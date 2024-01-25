@@ -9,8 +9,10 @@
         @yield('og_metatag_section')
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>FoodPark || Restaurant Template</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta name="description" content="{{ config('settings.seo_description') }}" />
+    <meta name="description" content="{{ config('settings.seo_keywords') }}" />
+    <title>{{ config('settings.seo_title') }}</title>
+    <link rel="icon" type="image/png" href="{{ asset(config('settings.favicon')) }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/spacing.css') }}">
@@ -24,6 +26,13 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
+
+    <style>
+        :root{
+            --colorPrimary: {{config('settings.site_color')}};
+        }
+    </style>
+    
     <script>
         var pusherKey = "{{ config('settings.pusher_key') }}";
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
