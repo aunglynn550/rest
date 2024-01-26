@@ -7,6 +7,7 @@
                                                 <table class="table">
                                                     <tbody>
                                                         <tr class="t_header">
+                                                            <th>No</th>
                                                             <th>Order</th>
                                                             <th>Date</th>
                                                             <th>Status</th>
@@ -15,6 +16,9 @@
                                                         </tr>
                                                         @foreach($orders as $order)
                                                         <tr>
+                                                            <td> 
+                                                                <h5>{{ ++$loop->index }}</h5>
+                                                            </td>
                                                             <td>
                                                                 <h5>#{{ $order->invoice_id }}</h5>
                                                             </td>

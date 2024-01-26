@@ -114,7 +114,7 @@ Route::get('cart-destroy', [CartController::class, 'cartDestroy'])->name('cart.d
 
 
 // Reservation Routes //
-Route::get('/wishlist/{produtId}',[WishlistContoller::class, 'store'])->name('wishlist.store');
+Route::get('/wishlist/{produtId}',[WishlistContoller::class, 'storecheckout.redirect'])->name('wishlist.store');
 
 // Coupon Routes//
 Route::post('apply-coupon', [FrontendController::class, 'applyCoupon'])->name('apply-coupon');

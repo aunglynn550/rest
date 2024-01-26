@@ -67,9 +67,9 @@
                                     aria-controls="v-pills-wishlist" aria-selected="false"><span><i
                                             class="far fa-heart"></i></span> wishlist</button>
 
-                                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-messages" type="button" role="tab"
-                                    aria-controls="v-pills-messages" aria-selected="false"><span><i
+                                <button class="nav-link" id="v-pills-review-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-review" type="button" role="tab"
+                                    aria-controls="v-pills-review" aria-selected="false"><span><i
                                             class="fas fa-star"></i></span> Reviews</button>
                                          
                                     @auth
@@ -79,8 +79,8 @@
                                         @endphp
                                     @endauth
                                 <button class="nav-link fp_chat_message" id="v-pills-settings-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-settings" type="button" role="tab"
-                                aria-controls="v-pills-settings" aria-selected="false">
+                                data-bs-target="#v-pills-message" type="button" role="tab"
+                                aria-controls="v-pills-message" aria-selected="false">
                                                                                  
                                 <span>                                    
                                     
@@ -89,13 +89,13 @@
                                     </button>
 
                                 <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-settings" type="button" role="tab"
-                                    aria-controls="v-pills-settings" aria-selected="false"><span><i
+                                    data-bs-target="#v-pills-password" type="button" role="tab"
+                                    aria-controls="v-pills-password" aria-selected="false"><span><i
                                             class="fas fa-user-lock"></i></span> Change Password </button>
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf                   
-                                        <button class="nav-link" type="button"
+                                        <button class="nav-link" type="button" style="width: 19rem;"
                                         href="{{ route('logout') }}" 
                                             onclick="event.preventDefault();
                                             this.closest('form').submit();">
@@ -123,6 +123,7 @@
                                 @include('frontend.dashboard.sections.wishlist-section')                                                          
                                
                                 @include('frontend.dashboard.sections.review-section')
+
                                 @include('frontend.dashboard.change-password')
                             </div>
                         </div>

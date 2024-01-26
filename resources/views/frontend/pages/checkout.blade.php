@@ -171,8 +171,9 @@
                                 <p>discount: <span>{{ currencyPosition(0) }}</span></p>
                             @endif
                             <p class="total"><span>total:</span> <span id="grand_total">{{ currencyPosition(grandCartTotal()) }}</span></p>
-                           
-                            <a class="common_btn" id="proceed_pmt_button" href=" #">Proceed To Payment</a>
+                           <div class="mt-4">
+                               <a class="common_btn" id="proceed_pmt_button" href=" #">Proceed To Payment</a>
+                           </div>
                     </div><!-- end fp__cart_list_footer_button -->
                 </div><!-- end col-lg-4 -->
 

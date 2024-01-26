@@ -137,7 +137,7 @@
                             <input type="text" id="coupon_code" name="code" placeholder="Coupon Code">
                             <button type="submit">apply</button>
                         </form>
-                      <div class="coupon_card">
+                      <div class="coupon_card mt-2">
                         @if(session()->has('coupon'))
                                 <div class="card mt-2">
                                     <div class="m-3">
@@ -148,9 +148,9 @@
                                     </div>
                                 </div>
                             @endif
-                      </div>
-                       
+                        </div>
                         <a class="common_btn" href="{{ route('checkout.index') }}">checkout</a>
+                       
                     </div>
                 </div>
             </div>
