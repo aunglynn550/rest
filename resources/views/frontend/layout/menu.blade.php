@@ -57,7 +57,7 @@ $mainMenu = Menu::getByName('main_menu');
                         @endphp
                     @endauth
                     <li>
-                        <a class="cart_icon message_icon">
+                        <a class="message_icon" href="{{ route('dashboard') }}">
                             
                             <i class="fas fa-comment-alt-dots"></i>
                             @auth                          

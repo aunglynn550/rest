@@ -51,15 +51,11 @@
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset(auth()->user()->avatar) }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi,{{ auth()->user()->name }}</div></a>
-            <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
+            <div class="dropdown-menu dropdown-menu-right">             
               <a href="{{ route('admin.profile') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
-              </a>
-              <a href="features-activities.html" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
-              </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
+              </a>            
+              <a href="{{ route('admin.setting.index') }}" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
@@ -77,7 +73,10 @@
         </ul>
       </nav>
       <div class="main-sidebar sidebar-style-2">
-        <aside id="sidebar-wrapper">         
+        <aside id="sidebar-wrapper">  
+          <div class="sidebar-brand">
+            <a href="{{ route('admin.dashboard') }}">{{ config('settings.site_name') }}</a>
+          </div>       
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>                                   
             <li class="{{ setSidebarActive(['admin.dashboard']) }}"><a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-fire"></i>Dashboard</a></li>                                  

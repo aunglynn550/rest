@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>General Dashboard &mdash; Stisla</title>
+  <title>{{ config('settings.site_name') }} Dashboard &mdash; Stisla</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -58,7 +58,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Developed By <a href="https://mraung.in/">Mr.a</a>
         </div>
         <div class="footer-right">
           

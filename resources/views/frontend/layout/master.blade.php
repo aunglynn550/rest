@@ -185,6 +185,10 @@
             }
         })
 
+        $(document).ready(function(){
+            $('.button-click').click();
+        })
+
     </script>
 
         <!-- Load Global JS -->
