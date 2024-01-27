@@ -158,3 +158,19 @@ if(!function_exists('getYTThumbnail')){
       return "https://img.youtube.com/vi/$videoId/$finalSize.jpg";
     }
 }
+
+//==============================//
+// Set Sidebar Active // 
+//==============================//
+
+if(!function_exists('setSidebarActive')){
+    function setSidebarActive(array $routes){
+     
+        foreach($routes as $route){
+            if(request()->routeIs($route)){
+                return 'active';
+            }            
+        }
+        return '';
+    }
+}

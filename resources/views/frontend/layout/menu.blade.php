@@ -40,9 +40,9 @@ $mainMenu = Menu::getByName('main_menu');
                     <li>
                         <a href="#" class="menu_search"><i class="far fa-search"></i></a>
                         <div class="fp__search_form">
-                            <form>
+                            <form action="{{ route('product.index') }}" method="GET">
                                 <span class="close_search"><i class="far fa-times"></i></span>
-                                <input type="text" placeholder="Search . . .">
+                                <input type="text" placeholder="Search . . ." name="search">
                                 <button type="submit">search</button>
                             </form>
                         </div>
