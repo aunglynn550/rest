@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\MenuBuilderController;
 use App\Http\Controllers\Admin\ReservationTimeController;
 use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProfileController;
@@ -154,6 +155,10 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
      // Delivery Area All Routes //
      Route::resource('delivery-area',DeliveryAreaController::class);
 
+      // Users All Routes //
+      Route::resource('user-management',UserController::class);
+      Route::post('user/approve-status-update',[UserController::class,'approveStatusUpdate'])->name('approve-status.update');
+
      
     // Admin Management All Routes//
     Route::resource('admin-management',AdminManagementController::class);
@@ -163,8 +168,9 @@ Route::group(['prefix'=> 'admin','as' => 'admin.'], function(){
      Route::get('orders',[OrderController::class,'index'])->name('orders.index');
      Route::get('orders/{id}',[OrderController::class,'show'])->name('orders.show');
      Route::get('orders/status/{id}',[OrderController::class,'getOrderStatus'])->name('orders.status');
-     Route::get('orders/status/{id}',[OrderController::class,'getOrderStatus'])->name('orders.status');
+     Route::get('orders/status/{id}',[OrderController::class,'getOrderStatpus'])->name('orders.status');
      Route::put('orders/status-update/{id}',[OrderController::class,'orderStatusUpdate'])->name('orders.status-update');
+     
      Route::delete('orders/{id}',[OrderController::class,'destroy'])->name('orders.destroy');
 
      Route::get('pending-orders',[OrderController::class,'pendingOrderIndex'])->name('pending-orders');

@@ -18,6 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/dashboard';
+    public const ApproveRequest = '/wait-approve';
     public const ADMIN = '/admin/dashboard';
 
     /**

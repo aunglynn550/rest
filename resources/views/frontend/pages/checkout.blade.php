@@ -187,6 +187,12 @@
 
 @push('scripts')
 <script>
+    /// csrf token SetUp////
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
     $(document).ready(function(){
         $('.v_address').prop('checked',false);
         $('.v_address').on('click',function(){

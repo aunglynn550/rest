@@ -34,8 +34,8 @@
                         <span><i class="fal fa-phone-alt"></i></span>
                         <div class="text">
                             <h3>call</h3>
-                            <p>+1347-430-9510</p>
-                            <p>+9658745554002</p>
+                            <p>+934-344-432</p>
+                            <p>+9597893933</p>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
                         <span><i class="fal fa-envelope"></i></span>
                         <div class="text">
                             <h3>mail</h3>
-                            <p>websolutionus1@gmail.com</p>
-                            <p>example@gmail.com</p>
+                            <p>arianfood@gmail.com</p>
+                            <p>koaunglynn@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <span><i class="fas fa-street-view"></i></span>
                         <div class="text">
                             <h3>location</h3>
-                            <p>7232 Broadway Suite 308, Jackson Heights, 11372, NY, United States</p>
+                            <p>210, St.Jon, 11372, Yangon, Myanmar</p>
                         </div>
                     </div>
                 </div>

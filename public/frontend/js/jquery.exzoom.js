@@ -145,7 +145,7 @@
             "height": g.navHeight + "px",
         });
 
-        exzoom_img_ul_width = boxWidth * imgNum;
+        exzoom_img_ul_width = boxWidth * 4 * imgNum;
         exzoom_img_ul_max_margin = boxWidth * (imgNum - 1);
         exzoom_img_ul.css("width", exzoom_img_ul_width);
         exzoom_img_box.append(`

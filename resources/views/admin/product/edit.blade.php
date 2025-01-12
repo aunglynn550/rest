@@ -52,7 +52,7 @@
                              
                             <div class="form-group">
                                 <label>Quantity</label>
-                                <input type="text" name="quantity" class="form-control"  value="{{ old('quantity') }}">
+                                <input type="text" name="quantity" class="form-control"  value="{{ $product->quantity }}">
                             </div><!-- end form-group --> 
 
                             <div class="form-group">

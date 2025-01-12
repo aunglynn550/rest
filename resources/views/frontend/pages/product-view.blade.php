@@ -236,7 +236,7 @@
                                             </div>
                                         </div>
                                         @else
-                                        <div class="alert alert-warning">Please Login first to add Review</div>
+                                        <div class="alert alert-warning">Please Login first to add Review<a href="{{ route('login') }}"><span class="common_btn ms-5">Login</span>  </a></div>
                                         @endauth
                                     </div>
                                 </div>

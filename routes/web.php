@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\DashboardController;
+use App\Http\Controllers\Frontend\DownloadInvoiceController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\WishlistContoller;
@@ -31,10 +32,6 @@ Route::group(['middleware'=> 'guest'],function(){
     Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 /// Frontend All Routes ///////
 Route::group(['middleware'=>'auth'], function(){
@@ -54,10 +51,13 @@ Route::group(['middleware'=>'auth'], function(){
 
 
 require __DIR__.'/auth.php';
+Route::get('/', [FrontendController::class, 'index'])->name('home');
+Route::get('/wait-approve', [FrontendController::class, 'waitApprove'])->name('wait-approve');
 
 
+
+Route::get('/download', [DownloadInvoiceController::class, 'index'])->name('invoice');
 //  Show Home Page
-Route::get('/home', [FrontendController::class, 'index'])->name('home');
 //  Chef Page
 Route::get('/chef', [FrontendController::class, 'chef'])->name('chef');
 //  Testimonial Page
@@ -102,17 +102,16 @@ Route::get('/load-product-model/{productId}', [FrontendController::class, 'loadP
 
 // Product Review Route//
 Route::post('product-review',[FrontendController::class,'productReviewStore'])->name('product-review-store');
-
+Route::group(['middleware'=>'approve'], function(){
 // Add To Cart Route//
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('get-cart-products', [CartController::class, 'getCartProduct'])->name('get-cart-products');
 Route::get('cart-product-remove/{rowId}', [CartController::class, 'cartProductRemove'])->name('cart-product-remove');
-Route::get('cart', [CartController::class, 'index'])->name('cart');
+
 Route::post('cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
 Route::get('cart-destroy', [CartController::class, 'cartDestroy'])->name('cart.destroy');
-
-
-
+});
+Route::get('cart', [CartController::class, 'index'])->name('cart');
 // Reservation Routes //
 Route::get('/wishlist/{produtId}',[WishlistContoller::class, 'storecheckout.redirect'])->name('wishlist.store');
 
@@ -142,4 +141,5 @@ Route::group(['middleware'=> 'auth'], function(){
     });
 
 
+    
 });

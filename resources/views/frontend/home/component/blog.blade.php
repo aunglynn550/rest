@@ -33,6 +33,7 @@
                     </div>
                     @endforeach
                 </div>
+                <a class="common_btn" href="{{ route('blogs') }}">More Blogs...</a>
             </div>
         </div>
     </section>

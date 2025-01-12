@@ -14,6 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class BlogDataTable extends DataTable
 {
+  
     /**
      * Build the DataTable class.
      *
@@ -21,6 +22,7 @@ class BlogDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
                 $edit = "<a href='".route('admin.blogs.edit',$query->id)."' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
@@ -49,8 +51,8 @@ class BlogDataTable extends DataTable
                     return '<span class="badge badge-danger">No</span>';
                 }
             })
-            ->rawColumns(['action','image','status','author'])
-            ->setRowId('id');
+            ->addIndexColumn()        
+            ->rawColumns(['action','image','status','author']);
     }
 
     /**
@@ -72,6 +74,7 @@ class BlogDataTable extends DataTable
                     ->minifiedAjax()
                     //->dom('Bfrtip')
                     ->orderBy(1)
+                    
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),

@@ -11,7 +11,7 @@
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>about UniFood</h1>
+                    <h1>about RkeFood</h1>
                     <ul>
                         <li><a href="{{ url('/home') }}">home</a></li>
                         <li><a href="javascript:;">about us</a></li>

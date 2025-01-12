@@ -11,6 +11,7 @@ use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Cart;
 
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
@@ -22,11 +23,20 @@ class PaymentController extends Controller
             throw ValidationException::withMessages(['Something Went Wrong']);
         }
 
+        foreach(Cart::content()as $item){
+            $contents[] = $item;
+            //dd($item);
+        }
+         
+
         $subtotal = cartTotal();
         $delivery = session()->get('delivery_charge')?? 0;
         $discount = session()->get('coupon')['discount'] ?? 0;
         $grandTotal = grandCartTotal($delivery);
+
+
         return view('frontend.pages.payment',compact([
+            'contents',
             'subtotal',
             'delivery',
             'discount',
@@ -45,7 +55,7 @@ class PaymentController extends Controller
         $request->validate([
             'payment_gateway' => ['required','string','in:paypal'] 
         ]);
-
+        $orderService->createOrder();
         // create order //
         if($orderService->createOrder()){
             // redirect user to the payment host /

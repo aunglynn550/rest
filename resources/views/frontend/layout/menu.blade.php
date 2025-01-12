@@ -5,7 +5,7 @@ $mainMenu = Menu::getByName('main_menu');
 <nav class="navbar navbar-expand-lg main_menu">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ asset(config('settings.logo')) }}" alt="FoodPark" class="logo">
+                <img src="{{ asset(config('settings.logo')) }}" alt="FoodRest" class="logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,7 +116,7 @@ $mainMenu = Menu::getByName('main_menu');
             </ul>
             <p class="subtotal">sub total <span class="cart_subtotal">{{ currencyPosition(cartTotal()) }}</span></p>
             <a class="cart_view" href="{{ route('cart') }}"> view cart</a>
-            <a class="checkout" href="check_out.html">checkout</a>
+            <a class="checkout" href="{{ route("checkout.index") }}">checkout</a>
         </div>
     </div>
 

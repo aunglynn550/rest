@@ -202,6 +202,7 @@
 
             <li class="{{ setSidebarActive(['admin.menu-builder.index']) }}"><a class="nav-link" href="{{ route('admin.menu-builder.index') }}"><i class="fas fa-list-alt"></i> <span>Menu Builder</span></a></li> 
             <li class="{{ setSidebarActive(['admin.admin-management.index']) }}"><a class="nav-link" href="{{ route('admin.admin-management.index') }}"><i class="fas fa-user-shield"></i> <span>Admin Management</span></a></li> 
+            <li class="{{ setSidebarActive(['admin.admin-management.index']) }}"><a class="nav-link" href="{{ route('admin.user-management.index') }}"><i class="fas fa-user-shield"></i> <span>User Management</span></a></li> 
             <li class="{{ setSidebarActive(['admin.setting.index']) }}"><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-cogs"></i>Settings</a></li>              
             <!-- <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>

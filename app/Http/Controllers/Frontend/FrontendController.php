@@ -209,7 +209,7 @@ class FrontendController extends Controller
         }
         $carbon = Carbon::now();
 
-        $blogs = $blogs->latest()->paginate(9);
+        $blogs = $blogs->latest()->paginate(2);
 
         $categories = BlogCategory::where('status',1)->get();
         return view('frontend.pages.blog',compact('blogs','categories','carbon'));
@@ -250,19 +250,26 @@ class FrontendController extends Controller
     function product(Request $request) : View{
     
         $products = Product::where(['status'=>1])->orderBy('id','DESC');                  
-
+       
         if($request->has('search') && $request->filled('search')){
+                  
             $products->where(function ($query) use ($request){
                 $query->where('name','like','%'.$request->search.'%')
+                ->orwhere('search_slug','like','%'.$request->search.'%')
                 ->orWhere('long_description','like'.'%'.$request->search.'%');
             });
         }
+
         if($request->has('category') && $request->filled('category')){
             $products->whereHas('category',function ($query) use ($request){
                 $query->where('slug',$request->category);                
             });
+
+
         }
-        $products = $products->withAvg('reviews','rating')->withCount('reviews')->paginate(2);
+
+        
+        $products = $products->withAvg('reviews','rating')->withCount('reviews')->paginate(5);
         $categories = Category::where('status',1)->get();
         return view('frontend.pages.product', compact('products','categories'));
     }
@@ -333,6 +340,7 @@ class FrontendController extends Controller
         $code = $request->code;
 
        $coupon = Coupon::where('code', $request->code)->first();
+       
 
        if(!$coupon){
             return response(['message' => 'Invalid Coupon Code.'],422);
@@ -369,5 +377,9 @@ class FrontendController extends Controller
         }
 
        
+    }//end method
+
+    function waitApprove(){
+        return response(['message'=>'Please Wait For Admin Approve']);
     }
 }

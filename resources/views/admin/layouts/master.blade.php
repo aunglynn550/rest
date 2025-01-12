@@ -13,6 +13,9 @@
   <!-- Toastr CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}">
 
+  <!-- Toggle css -->
+  <link rel="stylesheet" href="{{ asset('admin/assets/css/toggle.css') }}">
+
   <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
